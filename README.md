@@ -1,6 +1,6 @@
 # Cozinha sob Medida
 
-Simulador de restaurante educativo em 2D (visão de cima) feito na **Godot 4.6.2** pelo estúdio **High Pitch Studios** (Elisa Maria Gomes, Mateus Corrêa de Mira e Otávio Rodolfo Roecker — Engenharia de Software, PAC III).
+Simulador de restaurante educativo em 2D (visão de cima) feito na **Godot 4.7.2** pelo estúdio **High Pitch Studios** (Elisa Maria Gomes, Mateus Corrêa de Mira e Otávio Rodolfo Roecker — Engenharia de Software, PAC III).
 
 Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato de uma receita-base feita para 2 pessoas, mas o grupo tem outro tamanho (3, 4, 5, 3,5, 4,5 ou 6 pessoas). Para preparar o prato, você precisa **calcular as quantidades proporcionais de cada ingrediente** — a matemática (proporção, frações e decimais) é a própria mecânica do jogo, não uma prova.
 
@@ -12,14 +12,14 @@ Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato
 
 | Item | Requisito |
 |---|---|
-| Engine | **Godot 4.6.2** (padrão, **não** a versão .NET/Mono) — https://godotengine.org/download/archive/ |
+| Engine | **Godot 4.7.2** (padrão, **não** a versão .NET/Mono) — https://godotengine.org/download/archive/ |
 | Sistema operacional | Windows 10/11 ou Linux (64 bits) |
 | Renderizador | GL Compatibility (roda em hardware modesto) |
 | Espaço em disco | ~200 MB |
 | Periféricos | Teclado e mouse |
 | Outras dependências | Nenhuma (sem plugins, bibliotecas ou instalação adicional) |
 
-> Outras versões 4.x podem abrir o projeto, mas a Godot pode exibir avisos de incompatibilidade. Use a 4.6.2.
+> Outras versões 4.x podem abrir o projeto, mas a Godot pode exibir avisos de incompatibilidade. Use a 4.7.2.
 
 ## 2. Como baixar o projeto
 
@@ -33,7 +33,7 @@ Ou, no GitHub, clique em **Code → Download ZIP** e extraia o arquivo.
 
 ## 3. Como executar
 
-1. Baixe o Godot 4.6.2 e abra-o (não precisa instalar; é um executável único).
+1. Baixe o Godot 4.7.2 e abra-o (não precisa instalar; é um executável único).
 2. Na tela inicial, clique em **Importar**.
 3. Selecione o arquivo **`project.godot`** (não a pasta), que fica na raiz do repositório, e clique em **Importar e Editar**.
 4. Na primeira abertura a Godot reimporta os assets automaticamente (alguns segundos). É normal; a pasta `.godot/` de cache não é versionada.
