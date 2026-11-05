@@ -4,7 +4,7 @@ Simulador de restaurante educativo em 2D (visão de cima) feito na **Godot 4.6.2
 
 Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato de uma receita-base feita para 2 pessoas, mas o grupo tem outro tamanho (3, 4, 5, 3,5, 4,5 ou 6 pessoas). Para preparar o prato, você precisa **calcular as quantidades proporcionais de cada ingrediente** — a matemática (proporção, frações e decimais) é a própria mecânica do jogo, não uma prova.
 
-- **GDD (Game Design Document):** `docs/CozinhaSobMedida_N3_GDD.pdf` (neste repositório) — <!-- TROCAR por link direto se necessário -->
+- **GDD (Game Design Document):** [`docs/CozinhaSobMedida_N3_GDD.pdf`](docs/CozinhaSobMedida_N3_GDD.pdf), neste repositório.
 
 ---
 
@@ -35,7 +35,7 @@ Ou, no GitHub, clique em **Code → Download ZIP** e extraia o arquivo.
 
 1. Baixe o Godot 4.6.2 e abra-o (não precisa instalar; é um executável único).
 2. Na tela inicial, clique em **Importar**.
-3. Selecione o arquivo **`project.godot`** (não a pasta) dentro da pasta `CozinhaSobMedida` e clique em **Importar e Editar**.
+3. Selecione o arquivo **`project.godot`** (não a pasta), que fica na raiz do repositório, e clique em **Importar e Editar**.
 4. Na primeira abertura a Godot reimporta os assets automaticamente (alguns segundos). É normal; a pasta `.godot/` de cache não é versionada.
 5. Pressione **F5** (ou o botão ▶ no canto superior direito). A cena inicial é `scenes/menu.tscn`.
 
@@ -92,12 +92,13 @@ Nesta versão **não há condição de vitória, derrota nem fases**: o jogo é 
 ## 6. Estrutura do repositório
 
 ```
-CozinhaSobMedida/
+/                      # raiz do repositório
   project.godot        # arquivo de projeto (importar na Godot)
+  README.md            # este guia
   scenes/              # menu, restaurante, chef, cliente, mesa, interface_calculo
   scripts/             # lógica em GDScript
   assets/art/          # texturas pixel art
   assets/audio/        # música ambiente e efeitos sonoros
-docs/
-  CozinhaSobMedida_N3_GDD.pdf
+  docs/
+    CozinhaSobMedida_N3_GDD.pdf
 ```
