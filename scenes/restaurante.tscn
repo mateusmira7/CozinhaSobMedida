@@ -1,0 +1,357 @@
+[gd_scene format=3 uid="uid://lbtclxo7ilev"]
+
+[ext_resource type="Script" uid="uid://pblnda01haha" path="res://scripts/restaurante.gd" id="1_7vdj3"]
+[ext_resource type="PackedScene" uid="uid://i3xxgnd173xc" path="res://scenes/chef.tscn" id="1_vda3c"]
+[ext_resource type="PackedScene" uid="uid://c0yqcp2olwuy5" path="res://scenes/mesa.tscn" id="2_7vdj3"]
+[ext_resource type="PackedScene" uid="uid://05l8bsxpdlpc" path="res://scenes/interface_calculo.tscn" id="3_ujm2o"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/musica_ambiente.wav" id="4_musica"]
+[ext_resource type="Texture2D" path="res://assets/art/piso_madeira.png" id="5_piso_madeira"]
+[ext_resource type="Texture2D" path="res://assets/art/piso_azulejo.png" id="6_piso_azulejo"]
+[ext_resource type="Texture2D" path="res://assets/art/parede.png" id="7_parede"]
+[ext_resource type="Texture2D" path="res://assets/art/rodape.png" id="8_rodape"]
+[ext_resource type="Texture2D" path="res://assets/art/janela.png" id="9_janela"]
+[ext_resource type="Texture2D" path="res://assets/art/quadro_azulejo1.png" id="10_quadro1"]
+[ext_resource type="Texture2D" path="res://assets/art/quadro_azulejo2.png" id="11_quadro2"]
+[ext_resource type="Texture2D" path="res://assets/art/vaso_planta.png" id="12_vaso"]
+[ext_resource type="Texture2D" path="res://assets/art/tapete.png" id="13_tapete"]
+[ext_resource type="Texture2D" path="res://assets/art/particula_vapor.png" id="14_vapor"]
+[ext_resource type="Texture2D" path="res://assets/art/fogao.png" id="15_fogao"]
+[ext_resource type="Texture2D" path="res://assets/art/panelas_penduradas.png" id="16_panelas"]
+[ext_resource type="Texture2D" path="res://assets/art/prateleira_temperos.png" id="17_temperos"]
+[ext_resource type="Texture2D" path="res://assets/art/bancada_preparo.png" id="18_bancada_art"]
+[ext_resource type="Texture2D" path="res://assets/art/despensa.png" id="19_despensa_art"]
+
+[sub_resource type="RectangleShape2D" id="Shape_bancada"]
+size = Vector2(140, 70)
+
+[sub_resource type="RectangleShape2D" id="Shape_despensa"]
+size = Vector2(130, 90)
+
+[sub_resource type="RectangleShape2D" id="Shape_parede_top"]
+size = Vector2(1200, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_parede_bottom"]
+size = Vector2(1200, 20)
+
+[sub_resource type="RectangleShape2D" id="Shape_parede_left"]
+size = Vector2(20, 720)
+
+[sub_resource type="RectangleShape2D" id="Shape_parede_right"]
+size = Vector2(20, 720)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vapor"]
+lifetime_randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 18.0
+direction = Vector3(0, -1, 0)
+spread = 18.0
+gravity = Vector3(0, -14, 0)
+initial_velocity_min = 8.0
+initial_velocity_max = 18.0
+scale_min = 0.6
+scale_max = 1.4
+color = Color(1, 1, 1, 0.35)
+
+[node name="Restaurante" type="Node2D" unique_id=396803888]
+script = ExtResource("1_7vdj3")
+
+[node name="MusicaAmbiente" type="AudioStreamPlayer" parent="." unique_id=800000001]
+stream = ExtResource("4_musica")
+volume_db = -14.0
+autoplay = true
+
+[node name="Fundo" type="TextureRect" parent="." unique_id=100000001]
+texture = ExtResource("5_piso_madeira")
+expand_mode = 1
+stretch_mode = 1
+offset_right = 1200.0
+offset_bottom = 720.0
+
+[node name="FaixaMesas" type="TextureRect" parent="." unique_id=100000002]
+texture = ExtResource("5_piso_madeira")
+expand_mode = 1
+stretch_mode = 1
+offset_right = 1200.0
+offset_bottom = 310.0
+modulate = Color(1.05, 1.02, 0.97, 1)
+
+[node name="FaixaCozinha" type="TextureRect" parent="." unique_id=100000003]
+texture = ExtResource("6_piso_azulejo")
+expand_mode = 1
+stretch_mode = 1
+offset_top = 560.0
+offset_right = 1200.0
+offset_bottom = 720.0
+
+[node name="ParedeFundo" type="TextureRect" parent="." unique_id=100000030]
+texture = ExtResource("7_parede")
+expand_mode = 1
+stretch_mode = 1
+offset_right = 1200.0
+offset_bottom = 94.0
+show_behind_parent = false
+
+[node name="RodapeFundo" type="TextureRect" parent="." unique_id=100000031]
+texture = ExtResource("8_rodape")
+expand_mode = 1
+stretch_mode = 1
+offset_top = 94.0
+offset_right = 1200.0
+offset_bottom = 118.0
+
+[node name="Decoracoes" type="Node2D" parent="." unique_id=900000000]
+
+[node name="Janela1" type="TextureRect" parent="Decoracoes" unique_id=900000001]
+texture = ExtResource("9_janela")
+offset_left = 55.0
+offset_top = 4.0
+offset_right = 167.0
+offset_bottom = 100.0
+
+[node name="Janela2" type="TextureRect" parent="Decoracoes" unique_id=900000003]
+texture = ExtResource("9_janela")
+offset_left = 1033.0
+offset_top = 4.0
+offset_right = 1145.0
+offset_bottom = 100.0
+
+[node name="QuadroAzulejo1" type="TextureRect" parent="Decoracoes" unique_id=900000005]
+texture = ExtResource("10_quadro1")
+offset_left = 430.0
+offset_top = 18.0
+offset_right = 490.0
+offset_bottom = 78.0
+
+[node name="QuadroAzulejo2" type="TextureRect" parent="Decoracoes" unique_id=900000006]
+texture = ExtResource("11_quadro2")
+offset_left = 710.0
+offset_top = 18.0
+offset_right = 770.0
+offset_bottom = 78.0
+
+[node name="Vaso1" type="TextureRect" parent="Decoracoes" unique_id=900000007]
+texture = ExtResource("12_vaso")
+offset_left = 45.0
+offset_top = 250.0
+offset_right = 112.0
+offset_bottom = 340.0
+
+[node name="Vaso2" type="TextureRect" parent="Decoracoes" unique_id=900000010]
+texture = ExtResource("12_vaso")
+offset_left = 1085.0
+offset_top = 250.0
+offset_right = 1152.0
+offset_bottom = 340.0
+
+[node name="TapeteEntrada" type="TextureRect" parent="Decoracoes" unique_id=900000013]
+texture = ExtResource("13_tapete")
+offset_left = 550.0
+offset_top = 237.0
+offset_right = 646.0
+offset_bottom = 285.0
+modulate = Color(1, 1, 1, 0.92)
+
+[node name="FogaoCozinha" type="TextureRect" parent="Decoracoes" unique_id=900000014]
+texture = ExtResource("15_fogao")
+offset_left = 830.0
+offset_top = 572.0
+offset_right = 986.0
+offset_bottom = 668.0
+
+[node name="PanelasPenduradas" type="TextureRect" parent="Decoracoes" unique_id=900000015]
+texture = ExtResource("16_panelas")
+offset_left = 90.0
+offset_top = 566.0
+offset_right = 210.0
+offset_bottom = 650.0
+
+[node name="PrateleiraTemperos" type="TextureRect" parent="Decoracoes" unique_id=900000016]
+texture = ExtResource("17_temperos")
+offset_left = 996.0
+offset_top = 566.0
+offset_right = 1104.0
+offset_bottom = 638.0
+
+[node name="VaporFogao" type="GPUParticles2D" parent="Decoracoes" unique_id=900000040]
+position = Vector2(600, 610)
+emitting = true
+amount = 10
+lifetime = 1.8
+speed_scale = 0.6
+process_material = SubResource("ParticleProcessMaterial_vapor")
+texture = ExtResource("14_vapor")
+
+[node name="LabelAreaMesas" type="Label" parent="." unique_id=100000010]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_font_sizes/font_size = 14
+text = "🍽️  ÁREA DAS MESAS"
+
+[node name="LabelAreaCozinha" type="Label" parent="." unique_id=100000011]
+offset_left = 10.0
+offset_top = 322.0
+offset_right = 10.0
+offset_bottom = 322.0
+theme_override_font_sizes/font_size = 14
+text = "👨‍🍳  COZINHA / BANCADA"
+
+[node name="Separador" type="ColorRect" parent="." unique_id=100000004]
+offset_top = 308.0
+offset_right = 1200.0
+offset_bottom = 314.0
+color = Color(0.36, 0.23, 0.13, 1)
+
+[node name="Mesa1" parent="." unique_id=1165986041 instance=ExtResource("2_7vdj3")]
+position = Vector2(200, 130)
+
+[node name="Mesa2" parent="." unique_id=645945070 instance=ExtResource("2_7vdj3")]
+position = Vector2(600, 130)
+
+[node name="Mesa3" parent="." unique_id=1921292582 instance=ExtResource("2_7vdj3")]
+position = Vector2(1000, 130)
+
+[node name="Chef" parent="." unique_id=1388323823 instance=ExtResource("1_vda3c")]
+position = Vector2(600, 430)
+
+[node name="Bancada" type="Area2D" parent="." unique_id=161309647]
+position = Vector2(600, 630)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bancada" unique_id=1311816109]
+shape = SubResource("Shape_bancada")
+
+[node name="BancadaVisual" type="TextureRect" parent="Bancada" unique_id=100000020]
+texture = ExtResource("18_bancada_art")
+expand_mode = 1
+stretch_mode = 1
+offset_left = -84.0
+offset_top = -54.0
+offset_right = 84.0
+offset_bottom = 54.0
+
+[node name="Label" type="Label" parent="Bancada" unique_id=1322962381]
+offset_left = -64.0
+offset_top = -66.0
+offset_right = 65.0
+offset_bottom = -50.0
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+text = "BANCADA DE PREPARO"
+
+[node name="LabelDica" type="Label" parent="Bancada" unique_id=100000022]
+visible = false
+offset_left = -35.0
+offset_top = 58.0
+offset_right = -35.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 11
+text = "[E] Calcular"
+
+[node name="Despensa" type="Area2D" parent="." unique_id=161309648]
+position = Vector2(350, 630)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Despensa" unique_id=1311816110]
+shape = SubResource("Shape_despensa")
+
+[node name="DespensaVisual" type="TextureRect" parent="Despensa" unique_id=100000023]
+texture = ExtResource("19_despensa_art")
+expand_mode = 1
+stretch_mode = 1
+offset_left = -75.0
+offset_top = -57.0
+offset_right = 75.0
+offset_bottom = 57.0
+
+[node name="Label" type="Label" parent="Despensa" unique_id=1322962382]
+offset_left = -58.0
+offset_top = -72.0
+offset_right = 58.0
+offset_bottom = -56.0
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+text = "DESPENSA"
+
+[node name="LabelDica" type="Label" parent="Despensa" unique_id=100000028]
+visible = false
+offset_left = -55.0
+offset_top = 60.0
+offset_right = 55.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 11
+horizontal_alignment = 1
+text = "[E] Pegar ingredientes"
+
+[node name="ParedeTop" type="StaticBody2D" parent="." unique_id=200000001]
+position = Vector2(600, 10)
+
+[node name="Col" type="CollisionShape2D" parent="ParedeTop" unique_id=200000002]
+shape = SubResource("Shape_parede_top")
+
+[node name="ParedeBottom" type="StaticBody2D" parent="." unique_id=200000003]
+position = Vector2(600, 710)
+
+[node name="Col" type="CollisionShape2D" parent="ParedeBottom" unique_id=200000004]
+shape = SubResource("Shape_parede_bottom")
+
+[node name="ParedeLeft" type="StaticBody2D" parent="." unique_id=200000005]
+position = Vector2(10, 360)
+
+[node name="Col" type="CollisionShape2D" parent="ParedeLeft" unique_id=200000006]
+shape = SubResource("Shape_parede_left")
+
+[node name="ParedeRight" type="StaticBody2D" parent="." unique_id=200000007]
+position = Vector2(1190, 360)
+
+[node name="Col" type="CollisionShape2D" parent="ParedeRight" unique_id=200000008]
+shape = SubResource("Shape_parede_right")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1302137044]
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=1200752903]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PainelScore" type="PanelContainer" parent="CanvasLayer/HUD" unique_id=530005675]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -240.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 100.0
+grow_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/PainelScore" unique_id=530005676]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/PainelScore/MarginContainer" unique_id=1545543854]
+layout_mode = 2
+
+[node name="LabelScore" type="Label" parent="CanvasLayer/HUD/PainelScore/MarginContainer/VBoxContainer" unique_id=84267003]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Score: 0"
+
+[node name="LabelMoedas" type="Label" parent="CanvasLayer/HUD/PainelScore/MarginContainer/VBoxContainer" unique_id=84267004]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.90, 0.65, 0.15, 1)
+theme_override_font_sizes/font_size = 15
+text = "Moedas: 0"
+
+[node name="LabelInstrucoes" type="Label" parent="CanvasLayer/HUD/PainelScore/MarginContainer/VBoxContainer" unique_id=527836545]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "WASD = Mover | Shift = Correr | E = Interagir"
+
+[node name="InterfaceCalculo" parent="CanvasLayer" unique_id=1617993291 instance=ExtResource("3_ujm2o")]

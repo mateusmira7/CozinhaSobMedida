@@ -1,0 +1,362 @@
+[gd_scene format=3 uid="uid://05l8bsxpdlpc"]
+
+[ext_resource type="Script" uid="uid://c15ni7m7jcaj" path="res://scripts/interface_calculo.gd" id="1_sxeu4"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/ding_correto.wav" id="2_ding"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/erro_dissonante.wav" id="3_erro"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/sizzle.wav" id="4_sizzle"]
+
+[sub_resource type="StyleBoxFlat" id="sb_painel"]
+bg_color = Color(0.99, 0.96, 0.91, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.42, 0.25, 0.15, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 14
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="sb_header"]
+bg_color = Color(0.757, 0.267, 0.055, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+content_margin_left = 20
+content_margin_right = 20
+content_margin_top = 12
+content_margin_bottom = 12
+
+[sub_resource type="StyleBoxFlat" id="sb_card_receita"]
+bg_color = Color(0.878, 0.941, 0.851, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.298, 0.478, 0.239, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 16
+content_margin_right = 16
+content_margin_top = 12
+content_margin_bottom = 12
+
+[sub_resource type="StyleBoxFlat" id="sb_card_pedido"]
+bg_color = Color(0.984, 0.906, 0.816, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.898, 0.533, 0.145, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+content_margin_left = 16
+content_margin_right = 16
+content_margin_top = 12
+content_margin_bottom = 12
+
+[sub_resource type="StyleBoxFlat" id="sb_input"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.25, 0.15, 0.55)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 12
+content_margin_right = 12
+content_margin_top = 6
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="sb_input_focus"]
+bg_color = Color(1, 0.98, 0.93, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.898, 0.533, 0.145, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 12
+content_margin_right = 12
+content_margin_top = 6
+content_margin_bottom = 6
+
+[sub_resource type="StyleBoxFlat" id="sb_confirmar"]
+bg_color = Color(0.298, 0.478, 0.239, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 20
+content_margin_right = 20
+content_margin_top = 10
+content_margin_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="sb_confirmar_hover"]
+bg_color = Color(0.357, 0.573, 0.286, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 20
+content_margin_right = 20
+content_margin_top = 10
+content_margin_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="sb_confirmar_pressed"]
+bg_color = Color(0.22, 0.38, 0.18, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 20
+content_margin_right = 20
+content_margin_top = 10
+content_margin_bottom = 10
+
+[sub_resource type="StyleBoxFlat" id="sb_feedback"]
+bg_color = Color(0.95, 0.91, 0.82, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+content_margin_left = 14
+content_margin_right = 14
+content_margin_top = 10
+content_margin_bottom = 10
+
+[node name="InterfaceCalculo" type="Control" unique_id=1011309800]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sxeu4")
+
+[node name="SomDing" type="AudioStreamPlayer" parent="." unique_id=700000010]
+stream = ExtResource("2_ding")
+volume_db = -4.0
+
+[node name="SomErro" type="AudioStreamPlayer" parent="." unique_id=700000011]
+stream = ExtResource("3_erro")
+volume_db = -6.0
+
+[node name="SomSizzle" type="AudioStreamPlayer" parent="." unique_id=700000012]
+stream = ExtResource("4_sizzle")
+volume_db = -8.0
+
+[node name="Dim" type="ColorRect" parent="." unique_id=900001001]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.05, 0.03, 0.55)
+mouse_filter = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=266062425]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Painel" type="PanelContainer" parent="CenterContainer" unique_id=1481878929]
+custom_minimum_size = Vector2(660, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("sb_painel")
+
+[node name="Main" type="VBoxContainer" parent="CenterContainer/Painel" unique_id=100000200]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Header" type="PanelContainer" parent="CenterContainer/Painel/Main" unique_id=100000201]
+layout_mode = 2
+theme_override_styles/panel = SubResource("sb_header")
+
+[node name="LabelTitulo" type="Label" parent="CenterContainer/Painel/Main/Header" unique_id=849778771]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+text = "🍳  BANCADA DE PREPARO"
+
+[node name="BodyMargin" type="MarginContainer" parent="CenterContainer/Painel/Main" unique_id=100000202]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 22
+
+[node name="Body" type="VBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin" unique_id=100000203]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LabelPedido" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body" unique_id=917370603]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.25, 0.15, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "⚠️  O grupo quer para Y pessoas!"
+
+[node name="Cards" type="HBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body" unique_id=100000204]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="CardReceita" type="PanelContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards" unique_id=100000205]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("sb_card_receita")
+
+[node name="VBoxReceita" type="VBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards/CardReceita" unique_id=100000206]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LabelReceitaTitulo" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards/CardReceita/VBoxReceita" unique_id=100000207]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.208, 0.361, 0.157, 1)
+theme_override_font_sizes/font_size = 14
+text = "📖 RECEITA BASE"
+
+[node name="LabelReceita" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards/CardReceita/VBoxReceita" unique_id=551811231]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.15, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+text = "Feijoada — base: 2 pessoas"
+
+[node name="CardPedido" type="PanelContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards" unique_id=100000208]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("sb_card_pedido")
+
+[node name="VBoxPedido" type="VBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards/CardPedido" unique_id=100000209]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="LabelPedidoTitulo" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards/CardPedido/VBoxPedido" unique_id=100000210]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.35, 0.05, 1)
+theme_override_font_sizes/font_size = 14
+text = "🧾 PEDIDO DO GRUPO"
+
+[node name="LabelMultiplicador" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/Cards/CardPedido/VBoxPedido" unique_id=100000211]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.15, 0.15, 0.1, 1)
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 2
+text = "Para 7 pessoas (3,5x)"
+
+[node name="Divisor" type="ColorRect" parent="CenterContainer/Painel/Main/BodyMargin/Body" unique_id=100000212]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.42, 0.25, 0.15, 0.25)
+
+[node name="InputsBox" type="VBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body" unique_id=100000213]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Linha1" type="HBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox" unique_id=100000214]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelIngrediente1" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox/Linha1" unique_id=2056278857]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.3, 0.19, 0.12, 1)
+theme_override_font_sizes/font_size = 14
+text = "Ingrediente 1"
+autowrap_mode = 2
+
+[node name="InputIngrediente1" type="LineEdit" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox/Linha1" unique_id=1918571028]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sb_input")
+theme_override_styles/focus = SubResource("sb_input_focus")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Digite aqui..."
+alignment = 1
+max_length = 8
+
+[node name="Linha2" type="HBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox" unique_id=100000215]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelIngrediente2" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox/Linha2" unique_id=1832765088]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.3, 0.19, 0.12, 1)
+theme_override_font_sizes/font_size = 14
+text = "Ingrediente 2"
+autowrap_mode = 2
+
+[node name="InputIngrediente2" type="LineEdit" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox/Linha2" unique_id=683473456]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sb_input")
+theme_override_styles/focus = SubResource("sb_input_focus")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Digite aqui..."
+alignment = 1
+max_length = 8
+
+[node name="Linha3" type="HBoxContainer" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox" unique_id=100000216]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelIngrediente3" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox/Linha3" unique_id=1728636309]
+custom_minimum_size = Vector2(230, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.3, 0.19, 0.12, 1)
+theme_override_font_sizes/font_size = 14
+text = "Ingrediente 3"
+autowrap_mode = 2
+
+[node name="InputIngrediente3" type="LineEdit" parent="CenterContainer/Painel/Main/BodyMargin/Body/InputsBox/Linha3" unique_id=807974599]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("sb_input")
+theme_override_styles/focus = SubResource("sb_input_focus")
+theme_override_font_sizes/font_size = 16
+placeholder_text = "Digite aqui..."
+alignment = 1
+max_length = 8
+
+[node name="LabelFeedback" type="Label" parent="CenterContainer/Painel/Main/BodyMargin/Body" unique_id=241905328]
+layout_mode = 2
+theme_override_styles/normal = SubResource("sb_feedback")
+theme_override_font_sizes/font_size = 13
+text = ""
+autowrap_mode = 2
+
+[node name="BotaoConfirmar" type="Button" parent="CenterContainer/Painel/Main/BodyMargin/Body" unique_id=1739973602]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_styles/normal = SubResource("sb_confirmar")
+theme_override_styles/hover = SubResource("sb_confirmar_hover")
+theme_override_styles/pressed = SubResource("sb_confirmar_pressed")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "✅  CONFIRMAR RECEITA"

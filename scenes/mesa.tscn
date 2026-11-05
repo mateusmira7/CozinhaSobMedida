@@ -1,0 +1,109 @@
+[gd_scene format=3 uid="uid://c0yqcp2olwuy5"]
+
+[ext_resource type="Script" uid="uid://clqyukcrk6cno" path="res://scripts/mesa.gd" id="1_3koje"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/aplausos.wav" id="2_aplausos"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/moeda.wav" id="3_moeda"]
+[ext_resource type="Texture2D" path="res://assets/art/toalha_mesa.png" id="4_madeira"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l63pt"]
+size = Vector2(60, 60)
+
+[node name="Mesa" type="Area2D" unique_id=1165986041]
+script = ExtResource("1_3koje")
+
+[node name="SomAplausos" type="AudioStreamPlayer2D" parent="." unique_id=700000020]
+stream = ExtResource("2_aplausos")
+volume_db = -8.0
+
+[node name="SomMoeda" type="AudioStreamPlayer2D" parent="." unique_id=700000021]
+stream = ExtResource("3_moeda")
+volume_db = -5.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1854831585]
+shape = SubResource("RectangleShape2D_l63pt")
+
+[node name="MesaSombra" type="ColorRect" parent="." unique_id=9000000]
+offset_left = -28.0
+offset_top = -18.0
+offset_right = 34.0
+offset_bottom = 36.0
+color = Color(0.1, 0.06, 0.03, 0.22)
+
+[node name="MesaVisual" type="TextureRect" parent="." unique_id=9000001]
+texture = ExtResource("4_madeira")
+expand_mode = 1
+stretch_mode = 1
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+
+[node name="MesaBorda" type="ColorRect" parent="." unique_id=9000002]
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = -26.0
+color = Color(0.58, 0.13, 0.11, 1)
+
+[node name="Cadeira1" type="ColorRect" parent="." unique_id=9000003]
+offset_left = -38.0
+offset_top = -20.0
+offset_right = -28.0
+offset_bottom = 20.0
+color = Color(0.14, 0.13, 0.15, 1)
+
+[node name="Cadeira2" type="ColorRect" parent="." unique_id=9000004]
+offset_left = 28.0
+offset_top = -20.0
+offset_right = 38.0
+offset_bottom = 20.0
+color = Color(0.14, 0.13, 0.15, 1)
+
+[node name="Cadeira3" type="ColorRect" parent="." unique_id=9000005]
+offset_left = -20.0
+offset_top = -38.0
+offset_right = 20.0
+offset_bottom = -28.0
+color = Color(0.14, 0.13, 0.15, 1)
+
+[node name="InfoBox" type="Node2D" parent="." unique_id=9000010]
+position = Vector2(-55, 40)
+
+[node name="FundoInfo" type="ColorRect" parent="InfoBox" unique_id=9000011]
+offset_right = 110.0
+offset_bottom = 110.0
+color = Color(0.15, 0.12, 0.08, 0.82)
+
+[node name="BarraPaciencia" type="ProgressBar" parent="InfoBox" unique_id=2006444514]
+custom_minimum_size = Vector2(100, 12)
+offset_left = 5.0
+offset_top = 4.0
+offset_right = 105.0
+offset_bottom = 31.0
+value = 100.0
+
+[node name="LabelPedido" type="Label" parent="InfoBox" unique_id=1423432275]
+clip_contents = true
+offset_left = 5.0
+offset_top = 32.0
+offset_right = 105.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 11
+text = "Mesa Vazia"
+autowrap_mode = 2
+
+[node name="LabelPessoas" type="Label" parent="InfoBox" unique_id=9000013]
+offset_left = 5.0
+offset_top = 68.0
+offset_right = 105.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(0.85, 0.75, 0.4, 1)
+theme_override_font_sizes/font_size = 10
+
+[node name="LabelStatus" type="Label" parent="InfoBox" unique_id=67285643]
+offset_left = 5.0
+offset_top = 89.0
+offset_right = 105.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0.9, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 10

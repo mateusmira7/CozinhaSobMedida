@@ -1,0 +1,121 @@
+[gd_scene format=3 uid="uid://i3xxgnd173xc"]
+
+[ext_resource type="Script" uid="uid://cfid2bpls5bab" path="res://scripts/chef.gd" id="1_1slas"]
+[ext_resource type="AudioStream" path="res://assets/audio/sfx/passo.wav" id="2_passo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jmn2j"]
+size = Vector2(32, 38)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_body"]
+width = 32
+height = 44
+
+[sub_resource type="Animation" id="Anim_piscar"]
+resource_name = "piscar"
+length = 0.22
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChefSprite/OlhoE:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChefSprite/OlhoD:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimLib_chef"]
+_data = {
+"piscar": SubResource("Anim_piscar")
+}
+
+[node name="Chef" type="CharacterBody2D" unique_id=1388323823]
+script = ExtResource("1_1slas")
+
+[node name="SomPasso" type="AudioStreamPlayer2D" parent="." unique_id=700000001]
+stream = ExtResource("2_passo")
+volume_db = -6.0
+max_distance = 800.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=485252564]
+shape = SubResource("RectangleShape2D_jmn2j")
+
+[node name="ChefSprite" type="Node2D" parent="." unique_id=999111222]
+
+[node name="Corpo" type="Polygon2D" parent="ChefSprite" unique_id=111222333]
+color = Color(0.9, 0.9, 1.0, 1.0)
+polygon = PackedVector2Array(-14, -4, 14, -4, 16, 22, -16, 22)
+
+[node name="Avental" type="Polygon2D" parent="ChefSprite" unique_id=111222334]
+color = Color(0.95, 0.95, 0.95, 1.0)
+polygon = PackedVector2Array(-10, 4, 10, 4, 11, 22, -11, 22)
+
+[node name="Cabeca" type="Polygon2D" parent="ChefSprite" unique_id=111222335]
+color = Color(1.0, 0.82, 0.65, 1.0)
+polygon = PackedVector2Array(-11, -22, 11, -22, 13, -4, -13, -4)
+
+[node name="Chapeu" type="Polygon2D" parent="ChefSprite" unique_id=111222336]
+color = Color(1.0, 1.0, 1.0, 1.0)
+polygon = PackedVector2Array(-12, -36, 12, -36, 10, -22, -10, -22)
+
+[node name="ChapeuAba" type="Polygon2D" parent="ChefSprite" unique_id=111222337]
+color = Color(1.0, 1.0, 1.0, 1.0)
+polygon = PackedVector2Array(-14, -24, 14, -24, 14, -20, -14, -20)
+
+[node name="OlhoE" type="Polygon2D" parent="ChefSprite" unique_id=111222338]
+color = Color(0.1, 0.1, 0.1, 1.0)
+polygon = PackedVector2Array(-6, -16, -3, -16, -3, -12, -6, -12)
+
+[node name="OlhoD" type="Polygon2D" parent="ChefSprite" unique_id=111222339]
+color = Color(0.1, 0.1, 0.1, 1.0)
+polygon = PackedVector2Array(3, -16, 6, -16, 6, -12, 3, -12)
+
+[node name="BocaFeliz" type="Polygon2D" parent="ChefSprite" unique_id=111222340]
+color = Color(0.7, 0.2, 0.2, 1.0)
+polygon = PackedVector2Array(-5, -8, 5, -8, 4, -6, -4, -6)
+
+[node name="BracoDireito" type="Polygon2D" parent="ChefSprite" unique_id=111222341]
+color = Color(0.9, 0.9, 1.0, 1.0)
+polygon = PackedVector2Array(14, -2, 20, 0, 18, 14, 12, 12)
+
+[node name="BracoEsquerdo" type="Polygon2D" parent="ChefSprite" unique_id=111222342]
+color = Color(0.9, 0.9, 1.0, 1.0)
+polygon = PackedVector2Array(-14, -2, -20, 0, -18, 14, -12, 12)
+
+[node name="SapatoD" type="Polygon2D" parent="ChefSprite" unique_id=111222350]
+color = Color(0.32, 0.2, 0.12, 1.0)
+polygon = PackedVector2Array(2, 20, 15, 20, 15, 25, 2, 25)
+
+[node name="SapatoE" type="Polygon2D" parent="ChefSprite" unique_id=111222351]
+color = Color(0.32, 0.2, 0.12, 1.0)
+polygon = PackedVector2Array(-15, 20, -2, 20, -2, 25, -15, 25)
+
+[node name="LencoPescoco" type="Polygon2D" parent="ChefSprite" unique_id=111222352]
+color = Color(0.76, 0.27, 0.06, 1.0)
+polygon = PackedVector2Array(-11, -4, 11, -4, 9, 2, -9, 2)
+
+[node name="AnimacoesRosto" type="AnimationPlayer" parent="." unique_id=111222360]
+libraries = {
+"": SubResource("AnimLib_chef")
+}
+
+[node name="TimerPiscar" type="Timer" parent="." unique_id=111222361]
+wait_time = 2.6
+autostart = true
+
+[node name="LabelNome" type="Label" parent="." unique_id=1603388510]
+offset_left = -20.0
+offset_top = -58.0
+offset_right = 40.0
+offset_bottom = -42.0
+text = "👨‍🍳 Chef"

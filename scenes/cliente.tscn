@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b8cliXnte5ka"]
+
+[ext_resource type="Script" path="res://scripts/cliente.gd" id="1_cli01"]
+
+[node name="Cliente" type="Node2D" unique_id=7001000001]
+script = ExtResource("1_cli01")
+
+[node name="ClienteSprite" type="Node2D" parent="." unique_id=7001000010]
+
+[node name="Sombra" type="Polygon2D" parent="ClienteSprite" unique_id=7001000020]
+color = Color(0.0, 0.0, 0.0, 0.18)
+polygon = PackedVector2Array(-12, 22, 12, 22, 8, 26, -8, 26)
+
+[node name="PernaDireita" type="Polygon2D" parent="ClienteSprite" unique_id=7001000021]
+color = Color(0.25, 0.20, 0.60, 1.0)
+polygon = PackedVector2Array(2, 18, 8, 18, 8, 32, 2, 32)
+
+[node name="PernaEsquerda" type="Polygon2D" parent="ClienteSprite" unique_id=7001000022]
+color = Color(0.25, 0.20, 0.60, 1.0)
+polygon = PackedVector2Array(-8, 18, -2, 18, -2, 32, -8, 32)
+
+[node name="Corpo" type="Polygon2D" parent="ClienteSprite" unique_id=7001000011]
+color = Color(0.28, 0.52, 0.85, 1.0)
+polygon = PackedVector2Array(-12, -2, 12, -2, 14, 20, -14, 20)
+
+[node name="Camisa" type="Polygon2D" parent="ClienteSprite" unique_id=7001000012]
+color = Color(0.20, 0.40, 0.72, 1.0)
+polygon = PackedVector2Array(-9, 6, 9, 6, 10, 20, -10, 20)
+
+[node name="BracoDireito" type="Polygon2D" parent="ClienteSprite" unique_id=7001000018]
+color = Color(0.28, 0.52, 0.85, 1.0)
+polygon = PackedVector2Array(12, -1, 19, 3, 17, 14, 10, 10)
+
+[node name="BracoEsquerdo" type="Polygon2D" parent="ClienteSprite" unique_id=7001000019]
+color = Color(0.28, 0.52, 0.85, 1.0)
+polygon = PackedVector2Array(-12, -1, -19, 3, -17, 14, -10, 10)
+
+[node name="Pescoco" type="Polygon2D" parent="ClienteSprite" unique_id=7001000023]
+color = Color(1.0, 0.80, 0.60, 1.0)
+polygon = PackedVector2Array(-5, -10, 5, -10, 5, -2, -5, -2)
+
+[node name="Cabeca" type="Polygon2D" parent="ClienteSprite" unique_id=7001000013]
+color = Color(1.0, 0.80, 0.60, 1.0)
+polygon = PackedVector2Array(-10, -26, 10, -26, 12, -10, -12, -10)
+
+[node name="Cabelo" type="Polygon2D" parent="ClienteSprite" unique_id=7001000014]
+color = Color(0.22, 0.14, 0.06, 1.0)
+polygon = PackedVector2Array(-10, -26, 10, -26, 11, -20, -11, -20)
+
+[node name="OlhoE" type="Polygon2D" parent="ClienteSprite" unique_id=7001000015]
+color = Color(0.08, 0.08, 0.08, 1.0)
+polygon = PackedVector2Array(-6, -20, -3, -20, -3, -16, -6, -16)
+
+[node name="OlhoD" type="Polygon2D" parent="ClienteSprite" unique_id=7001000016]
+color = Color(0.08, 0.08, 0.08, 1.0)
+polygon = PackedVector2Array(3, -20, 6, -20, 6, -16, 3, -16)
+
+[node name="BocaSorriso" type="Polygon2D" parent="ClienteSprite" unique_id=7001000017]
+color = Color(0.65, 0.18, 0.18, 1.0)
+polygon = PackedVector2Array(-4, -13, 4, -13, 3, -11, -3, -11)
