@@ -1,250 +1,120 @@
-# 🍳 Cozinha sob Medida
+# Cozinha sob Medida
 
-**Cozinha sob Medida** é um simulador educativo de restaurante em 2D (visão de cima), desenvolvido na **Godot Engine 4.7.2** pelo estúdio **High Pitch Studios**, formado por Elisa Maria Gomes, Mateus Corrêa de Mira e Otávio Rodolfo Roecker, estudantes de Engenharia de Software — PAC III.
+Simulador de restaurante educativo em 2D (visão de cima) feito na **Godot 4.7.2** pelo estúdio **High Pitch Studios** (Elisa Maria Gomes, Mateus Corrêa de Mira e Otávio Rodolfo Roecker — Engenharia de Software, PAC III).
 
-Você assume o papel de um chef responsável por atender clientes em um restaurante. Cada grupo solicita um prato com base em uma receita originalmente dimensionada para 2 pessoas. Entretanto, o tamanho dos grupos varia entre 3, 4, 5, 3,5, 4,5 e 6 pessoas.
+Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato de uma receita-base feita para 2 pessoas, mas o grupo tem outro tamanho (3, 4, 5 ou 6 pessoas, ou grupos com criança: 3 adultos e 1 criança, 4 adultos e 1 criança). Para preparar o prato, você precisa **calcular as quantidades proporcionais de cada ingrediente** — a matemática (proporção, frações e decimais) é a própria mecânica do jogo, não uma prova.
 
-Para preparar os pratos corretamente, o jogador precisa calcular as quantidades proporcionais de cada ingrediente. Dessa forma, **proporção, frações e números decimais fazem parte das mecânicas principais do jogo**, tornando a matemática parte da experiência de gameplay, e não uma prova.
-
-📄 **Documentação do projeto:**
-[**Acessar o GDD — Game Design Document (PDF)**](docs/Cozinha%20sob%20Medida%20%E2%80%94%20Game%20Design%20Document.pdf)
+- **GDD (Game Design Document):** [`docs/Cozinha sob Medida — Game Design Document.pdf`](<docs/Cozinha sob Medida — Game Design Document.pdf>), neste repositório.
 
 ---
 
-## 1. Requisitos do sistema
+## 1. Requisitos
 
 | Item | Requisito |
 |---|---|
-| Engine | **Godot Engine 4.7.2** (versão padrão, não .NET/Mono) |
-| Download da Engine | [Godot 4.7.2 — Arquivo de versões](https://godotengine.org/download/archive/) |
+| Engine | **Godot 4.7.2** (padrão, **não** a versão .NET/Mono) — https://godotengine.org/download/archive/ |
 | Sistema operacional | Windows 10/11 ou Linux (64 bits) |
-| Renderizador | GL Compatibility |
-| Espaço em disco | Aproximadamente 200 MB |
+| Renderizador | GL Compatibility (roda em hardware modesto) |
+| Espaço em disco | ~200 MB |
 | Periféricos | Teclado e mouse |
-| Dependências adicionais | Nenhuma. Não são necessários plugins, bibliotecas ou instalações adicionais. |
+| Outras dependências | Nenhuma (sem plugins, bibliotecas ou instalação adicional) |
 
-> **Importante:** recomenda-se utilizar exatamente a Godot 4.7.2. Outras versões da série 4.x podem abrir o projeto, mas podem apresentar avisos de compatibilidade.
+> Outras versões 4.x podem abrir o projeto, mas a Godot pode exibir avisos de incompatibilidade. Use a 4.7.2.
 
 ## 2. Como baixar o projeto
 
-Existem duas maneiras de obter o código-fonte.
-
-### Opção 1 — Clonar utilizando Git
-
-Abra o terminal e execute:
+Com Git:
 
 ```bash
 git clone <URL-DO-REPOSITORIO>
 ```
 
-Substitua `<URL-DO-REPOSITORIO>` pelo endereço HTTPS deste repositório.
+Ou, no GitHub, clique em **Code → Download ZIP** e extraia o arquivo.
 
-### Opção 2 — Baixar pelo GitHub
+## 3. Como executar
 
-1. Acesse o repositório no GitHub.
-2. Clique no botão **Code**.
-3. Selecione **Download ZIP**.
-4. Extraia o arquivo baixado em uma pasta de sua preferência.
+1. Baixe o Godot 4.7.2 e abra-o (não precisa instalar; é um executável único).
+2. Na tela inicial, clique em **Importar**.
+3. Selecione o arquivo **`project.godot`** (não a pasta), que fica na raiz do repositório, e clique em **Importar e Editar**.
+4. Na primeira abertura a Godot reimporta os assets automaticamente (alguns segundos). É normal; a pasta `.godot/` de cache não é versionada.
+5. Pressione **F5** (ou o botão ▶ no canto superior direito). A cena inicial é `scenes/menu.tscn`.
 
-## 3. Como executar o projeto
-
-1. Baixe a **Godot Engine 4.7.2**, na versão padrão (não .NET/Mono).
-2. Abra o executável da Godot. Não é necessário realizar uma instalação tradicional.
-3. Na tela inicial, selecione a opção **Importar**.
-4. Localize e selecione o arquivo `project.godot`, presente na raiz do repositório.
-5. Clique em **Importar e Editar**.
-6. Aguarde a importação inicial dos recursos do projeto. Esse processo pode levar alguns segundos.
-7. Com o projeto aberto, pressione **F5** ou clique no botão de execução (▶), localizado no canto superior direito.
-
-A cena inicial do jogo é `scenes/menu.tscn`.
-
-> **Observação:** a pasta `.godot/` contém arquivos de cache gerados automaticamente pela Engine e não precisa estar presente no repositório. A Godot recria esses arquivos durante a primeira abertura do projeto.
+<!-- Se vocês exportarem um build: adicionar aqui "Alternativa sem editor: baixe o executável em Releases, extraia e execute CozinhaSobMedida.exe". -->
 
 ## 4. Como jogar
 
-### 4.1. Iniciando uma partida
+### Iniciar a partida
+No menu principal, clique em **Jogar** (ou pressione Enter/Espaço com o botão focado). **Sair** fecha o jogo.
 
-Ao abrir o jogo, será apresentado o menu principal.
+Quando já existe um jogo salvo, o menu mostra **Continuar** (com os pontos e as moedas salvos) e **Novo jogo** (pede confirmação antes de apagar o progresso). Nos menus, use o mouse ou `W`/`S` e Enter.
 
-- **Jogar:** inicia a partida e carrega o restaurante.
-- **Sair:** encerra a aplicação.
+### Controles
 
-### 4.2. Controles
-
-| Tecla / Ação | Funcionalidade |
+| Tecla / ação | O que faz |
 |---|---|
-| `W` `A` `S` `D` | Movimentam o chef pelo cenário. |
-| `Shift` (segurar) | Faz o chef correr. |
-| `E` ou `Espaço` | Executa interações com os elementos do restaurante. |
-| Teclas numéricas | Permitem inserir as quantidades dos ingredientes. |
-| `,` ou `.` | Permitem inserir valores decimais. |
-| Mouse | Permite selecionar os campos e clicar no botão **Confirmar** da interface de cálculo. |
+| `W` `A` `S` `D` | Move o chef |
+| `Shift` (segurar) | Corre |
+| `E` ou `Espaço` | Interage: anotar pedido, abrir/fechar a bancada, pegar ingredientes, entregar o prato |
+| Teclado (números, `,` ou `.`) | Digita as quantidades na interface de cálculo |
+| Mouse | Clica nos campos e no botão **Confirmar** da interface de cálculo |
+| `L` | Abre a Lojinha |
+| `Esc` | Abre/fecha o menu de pausa (com a Lojinha aberta, fecha a Lojinha) |
 
-### 4.3. Etapas de atendimento de um pedido
+### Salvamento
+- **Menu de pausa (`Esc`):** Continuar, Salvar jogo, Salvar e voltar ao menu, Salvar e sair do jogo. O jogo fica parado enquanto o menu está aberto.
+- **Automático:** a cada etapa do pedido, cálculo, compra, cliente perdido e ao fechar a janela.
+- **O que é salvo:** pontos, moedas, compras, toalha escolhida, clientes nas mesas (com a paciência), pedido em andamento, erros desse pedido e posição do chef.
+- O primeiro atendimento guiado, se for interrompido, recomeça do início.
+- Arquivo: `user://progresso.cfg` (no Windows, `%APPDATA%\Godot\app_userdata\CozinhaSobMedida\`). Saves da versão anterior (moedas e compras) continuam valendo.
 
-O atendimento de cada cliente segue cinco etapas:
+### Primeiro atendimento guiado
+Ao iniciar, só uma mesa tem cliente (Feijão Tropeiro para 4 pessoas, fator 2×). Uma faixa no topo da tela e uma seta amarela indicam cada etapa: anotar → bancada → calcular → despensa → entregar. Nesse primeiro pedido a paciência do cliente **não diminui**. Concluído o pedido, os demais clientes passam a chegar normalmente.
 
-**1. Anotar o pedido**
+### Passo a passo de um pedido
+1. **Anotar o pedido:** vá até uma mesa com cliente (aparece `[E] Anotar`) e pressione `E`. A barra de paciência do cliente começa a esvaziar.
+2. **Calcular:** vá até a **bancada** (aparece `[E] Calcular receita`) e pressione `E`. Abre a tela com a receita-base (para 2 pessoas) e o tamanho do grupo.
+3. **Digitar as quantidades:** calcule o fator (pessoas do grupo ÷ 2) e multiplique cada ingrediente. Digite os 3 valores nos campos e clique em **Confirmar**. Aceita vírgula ou ponto.
+   - *Exemplo:* Feijão Tropeiro, base 2 pessoas (200 g feijão, 100 g farinha, 120 g linguiça), grupo de 5 → fator 2,5 → **500 g, 250 g, 300 g**.
+   - O jogo aceita erro de até **6%** em cada valor.
+4. **Buscar ingredientes:** com o cálculo correto, vá até a **despensa** (`[E] Pegar ingredientes`) e pressione `E`.
+5. **Entregar:** volte à mesa do pedido e pressione `E` (`[E] Entregar`).
 
-- Aproxime-se de uma mesa ocupada por um cliente.
-- Quando aparecer a indicação `[E] Anotar`, pressione `E`.
-- O pedido será registrado e a barra de paciência do cliente começará a diminuir.
+### Objetivo, regras e pontuação
+- Grupos "com criança" (3,5 ou 4,5 porções) mostram *N adultos e 1 criança*: a criança conta como meia porção no cálculo.
+- Os clientes entram pela porta na lateral esquerda do salão, um de cada vez (com um intervalo entre eles).
+- Atender o máximo de clientes com o cálculo correto, acumulando **Score** e **Moedas** (mostrados no canto da tela).
+- Só dá para atender **um pedido por vez**.
+- Entrega correta: **+100 pontos** e **+15 moedas**.
+- Cálculo errado: **−10 pontos** por tentativa; a tela indica qual ingrediente errou e quantos erros ainda restam. Você pode errar **até 3 vezes** por pedido: no 4º erro o cliente vai embora e você perde só os pontos das tentativas erradas (4 × −10 = −40), sem a penalidade extra de −50.
+- Paciência esgotada: o cliente vai embora, **−50 pontos** (o Score nunca fica abaixo de 0) e o pedido em andamento é cancelado; a bancada fecha sozinha e você pode pegar outro pedido.
+- A paciência de cada cliente fica verde → amarela (<60%) → vermelha (<30%).
+- Novos clientes ocupam as mesas vazias automaticamente (3 mesas).
 
-**2. Calcular a receita**
+### Vitória, derrota e progressão
+Nesta versão **não há condição de vitória, derrota nem fases**: o jogo é uma partida contínua (loop de gameplay validado). Para encerrar, pressione `Esc` e escolha **Salvar e sair do jogo** (ou feche a janela). O objetivo planejado no GDD (transformar o restaurante em 5 estrelas) ainda não está implementado.
 
-- Dirija-se à bancada de preparo.
-- Quando aparecer a indicação `[E] Calcular receita`, pressione `E`.
-- Uma interface apresentará a receita-base, dimensionada para 2 pessoas, e a quantidade de pessoas do grupo.
+## 5. Limitações conhecidas e o que ainda não foi implementado
 
-**3. Informar as quantidades dos ingredientes**
-
-- Calcule o fator de proporcionalidade dividindo a quantidade de pessoas do grupo por 2.
-- Multiplique a quantidade original de cada ingrediente pelo fator encontrado.
-- Digite os três resultados nos campos correspondentes.
-- Clique em **Confirmar** para validar os valores.
-
-O jogo aceita uma margem de erro de até **6% em cada ingrediente** e permite utilizar vírgula ou ponto como separador decimal.
-
-**Exemplo de cálculo:**
-
-Receita-base de Feijão Tropeiro para 2 pessoas:
-
-| Ingrediente | Quantidade original |
-|---|---:|
-| Feijão | 200 g |
-| Farinha | 100 g |
-| Linguiça | 120 g |
-
-Pedido para 5 pessoas:
-
-- Fator de proporcionalidade: 5 ÷ 2 = 2,5.
-- Feijão: 200 × 2,5 = **500 g**.
-- Farinha: 100 × 2,5 = **250 g**.
-- Linguiça: 120 × 2,5 = **300 g**.
-
-**4. Buscar os ingredientes**
-
-- Após acertar o cálculo, dirija-se à despensa.
-- Quando aparecer a indicação `[E] Pegar ingredientes`, pressione `E`.
-- Os ingredientes necessários serão coletados automaticamente.
-
-**5. Entregar o prato**
-
-- Retorne à mesa do cliente que realizou o pedido.
-- Quando aparecer a indicação `[E] Entregar`, pressione `E`.
-- O atendimento será concluído e a pontuação correspondente será adicionada.
-
-### 4.4. Objetivos, regras e pontuação
-
-O objetivo principal é atender o maior número possível de clientes, realizando corretamente os cálculos e entregando os pedidos dentro do tempo de paciência disponível.
-
-| Situação | Consequência |
-|---|---|
-| Entrega correta | +100 pontos e +15 moedas |
-| Cálculo incorreto | -10 pontos por tentativa |
-| Paciência esgotada | -50 pontos e cancelamento do pedido |
-
-**Regras adicionais:**
-
-- Apenas um pedido pode ser atendido por vez.
-- É possível tentar novamente quando um cálculo estiver incorreto.
-- A interface indica qual ingrediente apresenta erro.
-- A pontuação (Score) nunca fica abaixo de zero.
-- A barra de paciência dos clientes muda de cor conforme o tempo restante:
-  - Verde: paciência normal.
-  - Amarela: menos de 60% de paciência.
-  - Vermelha: menos de 30% de paciência.
-- Novos clientes ocupam automaticamente as mesas disponíveis.
-- O restaurante possui três mesas para atendimento simultâneo.
-
-### 4.5. Vitória, derrota e progressão
-
-Na versão atual, o jogo funciona em um ciclo contínuo de gameplay, sem condições de vitória ou derrota e sem progressão por fases.
-
-O jogador pode continuar atendendo clientes enquanto desejar. Para encerrar a partida, basta fechar a janela do jogo.
-
-O objetivo de longo prazo apresentado no GDD, que consiste em transformar o restaurante em um estabelecimento de 5 estrelas, ainda não está implementado nesta versão.
-
----
-
-## 5. Limitações conhecidas e funcionalidades não implementadas
-
-A versão entregue possui as principais mecânicas de atendimento e cálculo proporcional implementadas. Entretanto, algumas funcionalidades previstas no planejamento inicial ainda não fazem parte da versão atual.
-
-| Funcionalidade | Situação atual |
-|---|---|
-| Tutorial integrado ao jogo | Não implementado. As instruções estão disponíveis neste README. |
-| Condições de vitória e derrota | Não implementadas. |
-| Progressão por fases | Não implementada. O GDD prevê quatro fases. |
-| Loja e sistema de melhorias | Não implementados. As moedas são acumuladas, mas não podem ser utilizadas. |
-| Etapa de cozimento no fogão | Não implementada. |
-| Inventário de ingredientes | Não implementado. A coleta na despensa é instantânea. |
-| Quantidade de mesas | Limitada a três mesas. |
-| Receitas disponíveis | Nove receitas. |
-| Culinárias disponíveis | Mineira, nordestina, baiana e gaúcha. |
-| Culinária internacional | Não implementada. |
-| Progressão de dificuldade | Não implementada. Os tamanhos dos grupos são sorteados aleatoriamente entre 3, 4, 5, 3,5, 4,5 e 6 pessoas. |
-| Menu de pausa | Não implementado. |
-| Retorno ao menu principal durante a partida | Não implementado. |
-| Opções de acessibilidade | Modo para daltonismo e ajuste de fonte ainda não implementados. |
-| Salvamento de progresso | Não implementado. |
-
----
+- O tutorial cobre só o primeiro atendimento (guiado); depois disso o jogo segue sem dicas de passo a passo.
+- Sem condição de vitória/derrota, sem fim de partida e sem fases (o GDD prevê 4 fases).
+- Sem etapa de cozimento no fogão e sem inventário de ingredientes: coletar na despensa é instantâneo.
+- Apenas 3 mesas e 9 receitas (culinárias mineira, nordestina, baiana e gaúcha, todas liberadas desde o início); a culinária Internacional não existe.
+- Dificuldade fixa: tamanhos de grupo não progridem de inteiros para decimais; sorteio aleatório entre 3, 4, 5, 3,5, 4,5 e 6 pessoas.
+- Sem opções de acessibilidade previstas no GDD (modo daltonismo, fonte ajustável).
+- Um único espaço de salvamento.
 
 ## 6. Estrutura do repositório
 
-A organização dos arquivos e diretórios do projeto está distribuída da seguinte maneira:
-
-```text
-/
-├── project.godot
-├── README.md
-│
-├── scenes/
-│   ├── menu.tscn
-│   ├── restaurante.tscn
-│   ├── chef.tscn
-│   ├── cliente.tscn
-│   ├── mesa.tscn
-│   └── interface_calculo.tscn
-│
-├── scripts/
-│   └── Arquivos de lógica e comportamento em GDScript
-│
-├── assets/
-│   ├── art/
-│   │   └── Texturas e elementos visuais em Pixel Art
-│   │
-│   └── audio/
-│       └── Músicas e efeitos sonoros
-│
-└── docs/
-    └── Cozinha sob Medida — Game Design Document.pdf
 ```
-
-> A estrutura acima apresenta a organização geral do projeto. A quantidade de arquivos e subdiretórios pode variar conforme a versão disponibilizada no repositório.
-
----
-
-## 7. Tecnologias utilizadas
-
-- **Godot Engine 4.7.2:** desenvolvimento e execução do jogo.
-- **GDScript:** programação das mecânicas e comportamentos.
-- **Pixel Art:** estilo visual dos personagens e cenários.
-- **Git e GitHub:** controle de versão e disponibilização do código-fonte.
-
----
-
-## 8. Equipe de desenvolvimento
-
-Projeto desenvolvido pelo estúdio **High Pitch Studios**, como parte das atividades acadêmicas do curso de Engenharia de Software — PAC III.
-
-| Integrante |
-|---|
-| Elisa Maria Gomes |
-| Mateus Corrêa de Mira |
-| Otávio Rodolfo Roecker |
-
----
-
-**High Pitch Studios — Cozinha sob Medida**
+/                      # raiz do repositório
+  project.godot        # arquivo de projeto (importar na Godot)
+  README.md            # este guia
+  scenes/              # menu, menu_pausa, restaurante, chef, cliente, mesa, interface_calculo, loja
+  scripts/             # lógica em GDScript
+  assets/art/          # texturas pixel art
+  assets/fonts/        # fonte Jersey 15 (licença OFL em OFL.txt)
+  assets/ui/           # tema visual dos menus
+  assets/audio/        # música ambiente e efeitos sonoros
+  docs/
+    Cozinha sob Medida — Game Design Document.pdf
+```
