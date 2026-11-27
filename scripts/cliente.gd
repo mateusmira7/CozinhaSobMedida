@@ -40,7 +40,7 @@ func _variar_aparencia():
 	var cabelos = [Color(0.22, 0.14, 0.06, 1.0), Color(0.08, 0.08, 0.08, 1.0), Color(0.45, 0.28, 0.12, 1.0), Color(0.65, 0.62, 0.58, 1.0)]
 	$ClienteSprite/Cabelo.color = cabelos[randi() % cabelos.size()]
 
-func iniciar_chegada(mesa_pos: Vector2):
+func iniciar_chegada(mesa_pos: Vector2, ponto_via: Vector2 = Vector2.INF):
 	# 1) Aparece com pop
 	var tw_entrada = create_tween().set_parallel(true)
 	tw_entrada.tween_property(self, "modulate:a", 1.0, 0.35)
@@ -49,17 +49,29 @@ func iniciar_chegada(mesa_pos: Vector2):
 
 	await tw_entrada.finished
 
-	# 2) Caminha até a mesa
-	var distancia = global_position.distance_to(mesa_pos)
-	var duracao = distancia / 160.0  # 160 px/s
+	# 2) Caminha até a mesa (passando por um ponto intermediário, se houver:
+	#    primeiro pelo corredor saindo da porta, depois até a mesa)
+	var trajeto: Array[Vector2] = []
+	if ponto_via != Vector2.INF:
+		trajeto.append(ponto_via)
+	trajeto.append(mesa_pos)
+
+	var distancia = 0.0
+	var anterior = global_position
+	for ponto in trajeto:
+		distancia += anterior.distance_to(ponto)
+		anterior = ponto
+	var duracao_total = distancia / 160.0  # 160 px/s
 
 	# Animação de passos nas pernas (paralela ao movimento)
-	_animar_passos(duracao)
+	_animar_passos(duracao_total)
 
-	var tw_andar = create_tween()
-	tw_andar.tween_property(self, "global_position", mesa_pos, duracao)\
-		.set_trans(Tween.TRANS_LINEAR)
-	await tw_andar.finished
+	for ponto in trajeto:
+		var duracao = global_position.distance_to(ponto) / 160.0
+		var tw_andar = create_tween()
+		tw_andar.tween_property(self, "global_position", ponto, duracao)\
+			.set_trans(Tween.TRANS_LINEAR)
+		await tw_andar.finished
 
 	# 3) Chegou — encolhe e some
 	var tw_saida = create_tween().set_parallel(true)
