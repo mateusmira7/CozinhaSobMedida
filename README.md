@@ -4,7 +4,7 @@ Simulador de restaurante educativo em 2D (visão de cima) feito na **Godot 4.7.2
 
 Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato de uma receita-base feita para 2 pessoas, mas o grupo tem outro tamanho (3, 4, 5, 3,5, 4,5 ou 6 pessoas). Para preparar o prato, você precisa **calcular as quantidades proporcionais de cada ingrediente** — a matemática (proporção, frações e decimais) é a própria mecânica do jogo, não uma prova.
 
-- **GDD (Game Design Document):** [`docs/CozinhaSobMedida_N3_GDD.pdf`](docs/CozinhaSobMedida_N3_GDD.pdf), neste repositório.
+- **GDD (Game Design Document):** [`docs/Cozinha sob Medida — Game Design Document.pdf`](docs/Cozinha sob Medida — Game Design Document.pdf), neste repositório.
 
 ---
 
