@@ -1,10 +1,10 @@
 # Cozinha sob Medida
 
-Simulador de restaurante educativo em 2D (visão de cima) feito na **Godot 4.7.2** pelo estúdio **High Pitch Studios** (Elisa Maria Gomes, Mateus Corrêa de Mira e Otávio Rodolfo Roecker — Engenharia de Software, PAC III).
+Simulador de restaurante educativo em 2D (visão de cima), desenvolvido na Godot 4.7.2 pelo estúdio High Pitch Studios (Elisa Maria Gomes, Mateus Corrêa de Mira e Otávio Rodolfo Roecker — Engenharia de Software, PAC III).
 
-Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato de uma receita-base feita para 2 pessoas, mas o grupo tem outro tamanho (3, 4, 5, 3,5, 4,5 ou 6 pessoas). Para preparar o prato, você precisa **calcular as quantidades proporcionais de cada ingrediente** — a matemática (proporção, frações e decimais) é a própria mecânica do jogo, não uma prova.
+Você é um chef que atende clientes em um restaurante. Cada grupo pede um prato baseado em uma receita para 2 pessoas, mas o tamanho do grupo varia (3, 4, 5, 3,5, 4,5 ou 6 pessoas). Para preparar o prato, você precisa calcular as quantidades proporcionais de cada ingrediente. A matemática (proporção, frações e decimais) é a própria mecânica do jogo, não uma prova.
 
-- **GDD (Game Design Document):** [`docs/Cozinha sob Medida — Game Design Document.pdf`](docs/Cozinha sob Medida — Game Design Document.pdf), neste repositório.
+-- GDD (Game Design Document): docs/Cozinha sob Medida — Game Design Document.pdf, disponível neste repositório.
 
 ---
 
