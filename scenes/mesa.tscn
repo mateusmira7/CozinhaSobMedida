@@ -4,9 +4,15 @@
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/aplausos.wav" id="2_aplausos"]
 [ext_resource type="AudioStream" path="res://assets/audio/sfx/moeda.wav" id="3_moeda"]
 [ext_resource type="Texture2D" path="res://assets/art/toalha_mesa.png" id="4_madeira"]
+[ext_resource type="Texture2D" path="res://assets/art/mesa_sombra.png" id="5_sombra"]
+
+[ext_resource type="Theme" path="res://assets/ui/tema_cozinha.tres" id="tema"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l63pt"]
 size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="Shape_mesa_solido"]
+size = Vector2(52, 52)
 
 [node name="Mesa" type="Area2D" unique_id=1165986041]
 script = ExtResource("1_3koje")
@@ -22,88 +28,92 @@ volume_db = -5.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1854831585]
 shape = SubResource("RectangleShape2D_l63pt")
 
-[node name="MesaSombra" type="ColorRect" parent="." unique_id=9000000]
-offset_left = -28.0
-offset_top = -18.0
-offset_right = 34.0
-offset_bottom = 36.0
-color = Color(0.1, 0.06, 0.03, 0.22)
+[node name="Solido" type="StaticBody2D" parent="." unique_id=920000060]
 
-[node name="MesaVisual" type="TextureRect" parent="." unique_id=9000001]
-texture = ExtResource("4_madeira")
+[node name="Col" type="CollisionShape2D" parent="Solido" unique_id=920000061]
+shape = SubResource("Shape_mesa_solido")
+
+[node name="MesaSombra" type="TextureRect" parent="." unique_id=9000000]
+texture = ExtResource("5_sombra")
 expand_mode = 1
-stretch_mode = 1
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = 30.0
-
-[node name="MesaBorda" type="ColorRect" parent="." unique_id=9000002]
-offset_left = -30.0
-offset_top = -30.0
-offset_right = 30.0
-offset_bottom = -26.0
-color = Color(0.58, 0.13, 0.11, 1)
+stretch_mode = 0
+offset_left = -32.0
+offset_top = -26.0
+offset_right = 40.0
+offset_bottom = 46.0
 
 [node name="Cadeira1" type="ColorRect" parent="." unique_id=9000003]
-offset_left = -38.0
+offset_left = -42.0
 offset_top = -20.0
-offset_right = -28.0
+offset_right = -30.0
 offset_bottom = 20.0
 color = Color(0.14, 0.13, 0.15, 1)
 
 [node name="Cadeira2" type="ColorRect" parent="." unique_id=9000004]
-offset_left = 28.0
+offset_left = 30.0
 offset_top = -20.0
-offset_right = 38.0
+offset_right = 42.0
 offset_bottom = 20.0
 color = Color(0.14, 0.13, 0.15, 1)
 
 [node name="Cadeira3" type="ColorRect" parent="." unique_id=9000005]
 offset_left = -20.0
-offset_top = -38.0
+offset_top = -42.0
 offset_right = 20.0
-offset_bottom = -28.0
+offset_bottom = -30.0
 color = Color(0.14, 0.13, 0.15, 1)
 
-[node name="InfoBox" type="Node2D" parent="." unique_id=9000010]
-position = Vector2(-55, 40)
+[node name="MesaVisual" type="TextureRect" parent="." unique_id=9000001]
+texture = ExtResource("4_madeira")
+expand_mode = 1
+stretch_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 
-[node name="FundoInfo" type="ColorRect" parent="InfoBox" unique_id=9000011]
-offset_right = 110.0
-offset_bottom = 110.0
-color = Color(0.15, 0.12, 0.08, 0.82)
+[node name="InfoBox" type="Node2D" parent="."]
+z_index = 5
+position = Vector2(-75, 40)
 
-[node name="BarraPaciencia" type="ProgressBar" parent="InfoBox" unique_id=2006444514]
-custom_minimum_size = Vector2(100, 12)
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 105.0
-offset_bottom = 31.0
+[node name="Comanda" type="PanelContainer" parent="InfoBox"]
+custom_minimum_size = Vector2(150, 0)
+offset_right = 150.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme = ExtResource("tema")
+theme_type_variation = &"Comanda"
+
+[node name="VBox" type="VBoxContainer" parent="InfoBox/Comanda"]
+layout_mode = 2
+theme_override_constants/separation = 2
+mouse_filter = 2
+
+[node name="BarraPaciencia" type="ProgressBar" parent="InfoBox/Comanda/VBox"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
 value = 100.0
+mouse_filter = 2
 
-[node name="LabelPedido" type="Label" parent="InfoBox" unique_id=1423432275]
-clip_contents = true
-offset_left = 5.0
-offset_top = 32.0
-offset_right = 105.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 11
-text = "Mesa Vazia"
+[node name="LabelPedido" type="Label" parent="InfoBox/Comanda/VBox"]
+layout_mode = 2
+theme_type_variation = &"TextoPapel"
+theme_override_font_sizes/font_size = 19
+theme_override_constants/line_spacing = -3
+horizontal_alignment = 1
+autowrap_mode = 2
+text = "Mesa livre"
+
+[node name="LabelPessoas" type="Label" parent="InfoBox/Comanda/VBox"]
+layout_mode = 2
+theme_type_variation = &"TextoPapel"
+theme_override_font_sizes/font_size = 17
+theme_override_colors/font_color = Color(0.55, 0.3, 0.08, 1)
+theme_override_constants/line_spacing = -3
+horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="LabelPessoas" type="Label" parent="InfoBox" unique_id=9000013]
-offset_left = 5.0
-offset_top = 68.0
-offset_right = 105.0
-offset_bottom = 91.0
-theme_override_colors/font_color = Color(0.85, 0.75, 0.4, 1)
-theme_override_font_sizes/font_size = 10
-
-[node name="LabelStatus" type="Label" parent="InfoBox" unique_id=67285643]
-offset_left = 5.0
-offset_top = 89.0
-offset_right = 105.0
-offset_bottom = 112.0
-theme_override_colors/font_color = Color(0.9, 0.9, 0.3, 1)
-theme_override_font_sizes/font_size = 10
+[node name="LabelStatus" type="Label" parent="InfoBox/Comanda/VBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"ChipCalmo"

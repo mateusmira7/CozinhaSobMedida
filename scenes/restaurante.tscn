@@ -20,6 +20,12 @@
 [ext_resource type="Texture2D" path="res://assets/art/prateleira_temperos.png" id="17_temperos"]
 [ext_resource type="Texture2D" path="res://assets/art/bancada_preparo.png" id="18_bancada_art"]
 [ext_resource type="Texture2D" path="res://assets/art/despensa.png" id="19_despensa_art"]
+[ext_resource type="Texture2D" path="res://assets/art/porta_entrada.png" id="20_porta"]
+[ext_resource type="PackedScene" path="res://scenes/loja.tscn" id="21_loja"]
+[ext_resource type="PackedScene" path="res://scenes/menu_pausa.tscn" id="22_pausa"]
+[ext_resource type="Theme" path="res://assets/ui/tema_cozinha.tres" id="23_tema"]
+[ext_resource type="Texture2D" path="res://assets/ui/icone_estrela.png" id="24_estrela"]
+[ext_resource type="Texture2D" path="res://assets/ui/icone_moeda.png" id="25_moeda"]
 
 [sub_resource type="RectangleShape2D" id="Shape_bancada"]
 size = Vector2(140, 70)
@@ -28,7 +34,7 @@ size = Vector2(140, 70)
 size = Vector2(130, 90)
 
 [sub_resource type="RectangleShape2D" id="Shape_parede_top"]
-size = Vector2(1200, 20)
+size = Vector2(1200, 130)
 
 [sub_resource type="RectangleShape2D" id="Shape_parede_bottom"]
 size = Vector2(1200, 20)
@@ -38,6 +44,24 @@ size = Vector2(20, 720)
 
 [sub_resource type="RectangleShape2D" id="Shape_parede_right"]
 size = Vector2(20, 720)
+
+[sub_resource type="RectangleShape2D" id="Shape_bancada_solido"]
+size = Vector2(156, 60)
+
+[sub_resource type="RectangleShape2D" id="Shape_despensa_solido"]
+size = Vector2(140, 54)
+
+[sub_resource type="RectangleShape2D" id="Shape_fogao_solido"]
+size = Vector2(146, 48)
+
+[sub_resource type="RectangleShape2D" id="Shape_panelas_solido"]
+size = Vector2(100, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape_temperos_solido"]
+size = Vector2(100, 24)
+
+[sub_resource type="RectangleShape2D" id="Shape_vaso_solido"]
+size = Vector2(40, 28)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vapor"]
 lifetime_randomness = 0.4
@@ -53,6 +77,7 @@ scale_max = 1.4
 color = Color(1, 1, 1, 0.35)
 
 [node name="Restaurante" type="Node2D" unique_id=396803888]
+y_sort_enabled = true
 script = ExtResource("1_7vdj3")
 
 [node name="MusicaAmbiente" type="AudioStreamPlayer" parent="." unique_id=800000001]
@@ -61,6 +86,7 @@ volume_db = -14.0
 autoplay = true
 
 [node name="Fundo" type="TextureRect" parent="." unique_id=100000001]
+z_index = -20
 texture = ExtResource("5_piso_madeira")
 expand_mode = 1
 stretch_mode = 1
@@ -68,22 +94,25 @@ offset_right = 1200.0
 offset_bottom = 720.0
 
 [node name="FaixaMesas" type="TextureRect" parent="." unique_id=100000002]
+z_index = -19
 texture = ExtResource("5_piso_madeira")
 expand_mode = 1
 stretch_mode = 1
 offset_right = 1200.0
-offset_bottom = 310.0
+offset_bottom = 500.0
 modulate = Color(1.05, 1.02, 0.97, 1)
 
 [node name="FaixaCozinha" type="TextureRect" parent="." unique_id=100000003]
+z_index = -18
 texture = ExtResource("6_piso_azulejo")
 expand_mode = 1
 stretch_mode = 1
-offset_top = 560.0
+offset_top = 500.0
 offset_right = 1200.0
 offset_bottom = 720.0
 
 [node name="ParedeFundo" type="TextureRect" parent="." unique_id=100000030]
+z_index = -17
 texture = ExtResource("7_parede")
 expand_mode = 1
 stretch_mode = 1
@@ -92,6 +121,7 @@ offset_bottom = 94.0
 show_behind_parent = false
 
 [node name="RodapeFundo" type="TextureRect" parent="." unique_id=100000031]
+z_index = -16
 texture = ExtResource("8_rodape")
 expand_mode = 1
 stretch_mode = 1
@@ -100,80 +130,94 @@ offset_right = 1200.0
 offset_bottom = 118.0
 
 [node name="Decoracoes" type="Node2D" parent="." unique_id=900000000]
+z_index = -9
 
 [node name="Janela1" type="TextureRect" parent="Decoracoes" unique_id=900000001]
+visible = false
+expand_mode = 1
+stretch_mode = 0
 texture = ExtResource("9_janela")
-offset_left = 55.0
-offset_top = 4.0
-offset_right = 167.0
-offset_bottom = 100.0
+offset_left = 56.0
+offset_top = 7.0
+offset_right = 168.0
+offset_bottom = 87.0
 
 [node name="Janela2" type="TextureRect" parent="Decoracoes" unique_id=900000003]
+expand_mode = 1
+stretch_mode = 0
 texture = ExtResource("9_janela")
-offset_left = 1033.0
-offset_top = 4.0
-offset_right = 1145.0
-offset_bottom = 100.0
+offset_left = 1032.0
+offset_top = 7.0
+offset_right = 1144.0
+offset_bottom = 87.0
 
 [node name="QuadroAzulejo1" type="TextureRect" parent="Decoracoes" unique_id=900000005]
+expand_mode = 1
+stretch_mode = 0
 texture = ExtResource("10_quadro1")
-offset_left = 430.0
-offset_top = 18.0
-offset_right = 490.0
-offset_bottom = 78.0
+offset_left = 436.0
+offset_top = 15.0
+offset_right = 500.0
+offset_bottom = 79.0
 
 [node name="QuadroAzulejo2" type="TextureRect" parent="Decoracoes" unique_id=900000006]
+expand_mode = 1
+stretch_mode = 0
 texture = ExtResource("11_quadro2")
-offset_left = 710.0
-offset_top = 18.0
-offset_right = 770.0
-offset_bottom = 78.0
+offset_left = 700.0
+offset_top = 15.0
+offset_right = 764.0
+offset_bottom = 79.0
 
-[node name="Vaso1" type="TextureRect" parent="Decoracoes" unique_id=900000007]
-texture = ExtResource("12_vaso")
-offset_left = 45.0
-offset_top = 250.0
-offset_right = 112.0
-offset_bottom = 340.0
+[node name="PortaEntrada" type="TextureRect" parent="Decoracoes" unique_id=900000050]
+texture = ExtResource("20_porta")
+expand_mode = 1
+stretch_mode = 0
+offset_left = 0.0
+offset_top = 149.0
+offset_right = 48.0
+offset_bottom = 261.0
 
-[node name="Vaso2" type="TextureRect" parent="Decoracoes" unique_id=900000010]
-texture = ExtResource("12_vaso")
-offset_left = 1085.0
-offset_top = 250.0
-offset_right = 1152.0
-offset_bottom = 340.0
+[node name="LabelPorta" type="Label" parent="Decoracoes" unique_id=900000051]
+offset_left = 2.0
+offset_top = 124.0
+offset_right = 78.0
+offset_bottom = 148.0
+grow_horizontal = 2
+theme = ExtResource("23_tema")
+theme_type_variation = &"Plaquinha"
+horizontal_alignment = 1
+text = "ENTRADA"
 
 [node name="TapeteEntrada" type="TextureRect" parent="Decoracoes" unique_id=900000013]
 texture = ExtResource("13_tapete")
-offset_left = 550.0
-offset_top = 237.0
-offset_right = 646.0
-offset_bottom = 285.0
-modulate = Color(1, 1, 1, 0.92)
+expand_mode = 1
+stretch_mode = 0
+offset_left = 456.0
+offset_top = 352.0
+offset_right = 744.0
+offset_bottom = 496.0
+modulate = Color(1, 1, 1, 0.95)
 
-[node name="FogaoCozinha" type="TextureRect" parent="Decoracoes" unique_id=900000014]
+[node name="Separador" type="ColorRect" parent="." unique_id=100000004]
+z_index = -15
+offset_top = 498.0
+offset_right = 1200.0
+offset_bottom = 504.0
+color = Color(0.36, 0.23, 0.13, 1)
+
+[node name="Fogao" type="Node2D" parent="." unique_id=920000010]
+position = Vector2(870, 628)
+
+[node name="Visual" type="TextureRect" parent="Fogao"]
 texture = ExtResource("15_fogao")
-offset_left = 830.0
-offset_top = 572.0
-offset_right = 986.0
-offset_bottom = 668.0
+offset_left = -78
+offset_top = -66
+offset_right = 78
+offset_bottom = 30
 
-[node name="PanelasPenduradas" type="TextureRect" parent="Decoracoes" unique_id=900000015]
-texture = ExtResource("16_panelas")
-offset_left = 90.0
-offset_top = 566.0
-offset_right = 210.0
-offset_bottom = 650.0
-
-[node name="PrateleiraTemperos" type="TextureRect" parent="Decoracoes" unique_id=900000016]
-texture = ExtResource("17_temperos")
-offset_left = 996.0
-offset_top = 566.0
-offset_right = 1104.0
-offset_bottom = 638.0
-
-[node name="VaporFogao" type="GPUParticles2D" parent="Decoracoes" unique_id=900000040]
-position = Vector2(600, 610)
+[node name="Vapor" type="GPUParticles2D" parent="Fogao"]
+position = Vector2(0, -53)
 emitting = true
 amount = 10
 lifetime = 1.8
@@ -181,42 +225,94 @@ speed_scale = 0.6
 process_material = SubResource("ParticleProcessMaterial_vapor")
 texture = ExtResource("14_vapor")
 
-[node name="LabelAreaMesas" type="Label" parent="." unique_id=100000010]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 10.0
-offset_bottom = 10.0
-theme_override_font_sizes/font_size = 14
-text = "🍽️  ÁREA DAS MESAS"
+[node name="Solido" type="StaticBody2D" parent="Fogao" unique_id=920000011]
+position = Vector2(0, 0)
 
-[node name="LabelAreaCozinha" type="Label" parent="." unique_id=100000011]
-offset_left = 10.0
-offset_top = 322.0
-offset_right = 10.0
-offset_bottom = 322.0
-theme_override_font_sizes/font_size = 14
-text = "👨‍🍳  COZINHA / BANCADA"
+[node name="Col" type="CollisionShape2D" parent="Fogao/Solido" unique_id=920000012]
+shape = SubResource("Shape_fogao_solido")
 
-[node name="Separador" type="ColorRect" parent="." unique_id=100000004]
-offset_top = 308.0
-offset_right = 1200.0
-offset_bottom = 314.0
-color = Color(0.36, 0.23, 0.13, 1)
+[node name="Panelas" type="Node2D" parent="." unique_id=920000020]
+position = Vector2(1050, 622)
+
+[node name="Visual" type="TextureRect" parent="Panelas"]
+texture = ExtResource("16_panelas")
+offset_left = -60
+offset_top = -54
+offset_right = 60
+offset_bottom = 30
+
+[node name="Solido" type="StaticBody2D" parent="Panelas" unique_id=920000021]
+position = Vector2(0, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Panelas/Solido" unique_id=920000022]
+shape = SubResource("Shape_panelas_solido")
+
+[node name="Temperos" type="Node2D" parent="." unique_id=920000030]
+position = Vector2(330, 628)
+
+[node name="Visual" type="TextureRect" parent="Temperos"]
+texture = ExtResource("17_temperos")
+offset_left = -54
+offset_top = -54
+offset_right = 54
+offset_bottom = 18
+
+[node name="Solido" type="StaticBody2D" parent="Temperos" unique_id=920000031]
+position = Vector2(0, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Temperos/Solido" unique_id=920000032]
+shape = SubResource("Shape_temperos_solido")
+
+[node name="Vaso1" type="Node2D" parent="." unique_id=920000040]
+position = Vector2(81, 400)
+
+[node name="Visual" type="TextureRect" parent="Vaso1"]
+expand_mode = 1
+stretch_mode = 0
+texture = ExtResource("12_vaso")
+offset_left = -36
+offset_top = -70
+offset_right = 36
+offset_bottom = 26
+
+[node name="Solido" type="StaticBody2D" parent="Vaso1" unique_id=920000041]
+position = Vector2(0, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Vaso1/Solido" unique_id=920000042]
+shape = SubResource("Shape_vaso_solido")
+
+[node name="Vaso2" type="Node2D" parent="." unique_id=920000050]
+position = Vector2(1119, 400)
+
+[node name="Visual" type="TextureRect" parent="Vaso2"]
+expand_mode = 1
+stretch_mode = 0
+texture = ExtResource("12_vaso")
+offset_left = -36
+offset_top = -70
+offset_right = 36
+offset_bottom = 26
+
+[node name="Solido" type="StaticBody2D" parent="Vaso2" unique_id=920000051]
+position = Vector2(0, 0)
+
+[node name="Col" type="CollisionShape2D" parent="Vaso2/Solido" unique_id=920000052]
+shape = SubResource("Shape_vaso_solido")
 
 [node name="Mesa1" parent="." unique_id=1165986041 instance=ExtResource("2_7vdj3")]
-position = Vector2(200, 130)
+position = Vector2(200, 165)
 
 [node name="Mesa2" parent="." unique_id=645945070 instance=ExtResource("2_7vdj3")]
-position = Vector2(600, 130)
+position = Vector2(600, 165)
 
 [node name="Mesa3" parent="." unique_id=1921292582 instance=ExtResource("2_7vdj3")]
-position = Vector2(1000, 130)
+position = Vector2(1000, 165)
 
 [node name="Chef" parent="." unique_id=1388323823 instance=ExtResource("1_vda3c")]
 position = Vector2(600, 430)
 
 [node name="Bancada" type="Area2D" parent="." unique_id=161309647]
-position = Vector2(600, 630)
+position = Vector2(600, 610)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bancada" unique_id=1311816109]
 shape = SubResource("Shape_bancada")
@@ -231,25 +327,32 @@ offset_right = 84.0
 offset_bottom = 54.0
 
 [node name="Label" type="Label" parent="Bancada" unique_id=1322962381]
-offset_left = -64.0
-offset_top = -66.0
-offset_right = 65.0
-offset_bottom = -50.0
-theme_override_font_sizes/font_size = 11
+z_index = 10
+offset_left = -92.0
+offset_top = -84.0
+offset_right = 92.0
+offset_bottom = -58.0
+grow_horizontal = 2
+theme = ExtResource("23_tema")
+theme_type_variation = &"Plaquinha"
 horizontal_alignment = 1
 text = "BANCADA DE PREPARO"
 
 [node name="LabelDica" type="Label" parent="Bancada" unique_id=100000022]
+z_index = 10
 visible = false
-offset_left = -35.0
-offset_top = 58.0
-offset_right = -35.0
-offset_bottom = 58.0
-theme_override_font_sizes/font_size = 11
+offset_left = -86.0
+offset_top = 60.0
+offset_right = 86.0
+offset_bottom = 86.0
+grow_horizontal = 2
+theme = ExtResource("23_tema")
+theme_type_variation = &"Dica"
+horizontal_alignment = 1
 text = "[E] Calcular"
 
 [node name="Despensa" type="Area2D" parent="." unique_id=161309648]
-position = Vector2(350, 630)
+position = Vector2(150, 610)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Despensa" unique_id=1311816110]
 shape = SubResource("Shape_despensa")
@@ -264,26 +367,44 @@ offset_right = 75.0
 offset_bottom = 57.0
 
 [node name="Label" type="Label" parent="Despensa" unique_id=1322962382]
-offset_left = -58.0
-offset_top = -72.0
-offset_right = 58.0
-offset_bottom = -56.0
-theme_override_font_sizes/font_size = 11
+z_index = 10
+offset_left = -52.0
+offset_top = -86.0
+offset_right = 52.0
+offset_bottom = -60.0
+grow_horizontal = 2
+theme = ExtResource("23_tema")
+theme_type_variation = &"Plaquinha"
 horizontal_alignment = 1
 text = "DESPENSA"
 
 [node name="LabelDica" type="Label" parent="Despensa" unique_id=100000028]
+z_index = 10
 visible = false
-offset_left = -55.0
-offset_top = 60.0
-offset_right = 55.0
-offset_bottom = 76.0
-theme_override_font_sizes/font_size = 11
+offset_left = -102.0
+offset_top = 62.0
+offset_right = 102.0
+offset_bottom = 88.0
+grow_horizontal = 2
+theme = ExtResource("23_tema")
+theme_type_variation = &"Dica"
 horizontal_alignment = 1
 text = "[E] Pegar ingredientes"
 
+[node name="Solido" type="StaticBody2D" parent="Bancada" unique_id=920000001]
+position = Vector2(0, 10)
+
+[node name="Col" type="CollisionShape2D" parent="Bancada/Solido" unique_id=920000002]
+shape = SubResource("Shape_bancada_solido")
+
+[node name="Solido" type="StaticBody2D" parent="Despensa" unique_id=920000003]
+position = Vector2(0, 13)
+
+[node name="Col" type="CollisionShape2D" parent="Despensa/Solido" unique_id=920000004]
+shape = SubResource("Shape_despensa_solido")
+
 [node name="ParedeTop" type="StaticBody2D" parent="." unique_id=200000001]
-position = Vector2(600, 10)
+position = Vector2(600, 65)
 
 [node name="Col" type="CollisionShape2D" parent="ParedeTop" unique_id=200000002]
 shape = SubResource("Shape_parede_top")
@@ -317,41 +438,110 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PainelScore" type="PanelContainer" parent="CanvasLayer/HUD" unique_id=530005675]
+[node name="PainelScore" type="PanelContainer" parent="CanvasLayer/HUD"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -240.0
-offset_top = 10.0
-offset_right = -10.0
+offset_left = -258.0
+offset_top = 8.0
+offset_right = -8.0
 offset_bottom = 100.0
 grow_horizontal = 0
+mouse_filter = 2
+theme = ExtResource("23_tema")
+theme_type_variation = &"Madeira"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HUD/PainelScore" unique_id=530005676]
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer/HUD/PainelScore"]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 6
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 6
+theme_override_constants/separation = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD/PainelScore/MarginContainer" unique_id=1545543854]
+[node name="Fichas" type="HBoxContainer" parent="CanvasLayer/HUD/PainelScore/VBox"]
 layout_mode = 2
+theme_override_constants/separation = 6
 
-[node name="LabelScore" type="Label" parent="CanvasLayer/HUD/PainelScore/MarginContainer/VBoxContainer" unique_id=84267003]
+[node name="FichaPontos" type="PanelContainer" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Ficha"
+
+[node name="Linha" type="HBoxContainer" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaPontos"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Icone" type="TextureRect" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaPontos/Linha"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("24_estrela")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texto" type="VBoxContainer" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaPontos/Linha"]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="Legenda" type="Label" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaPontos/Linha/Texto"]
+layout_mode = 2
+theme_type_variation = &"TextoClaro"
+theme_override_font_sizes/font_size = 16
+text = "Pontos"
+
+[node name="LabelScore" type="Label" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaPontos/Linha/Texto"]
+layout_mode = 2
+theme_type_variation = &"Numero"
+theme_override_font_sizes/font_size = 29
+text = "0"
+
+[node name="FichaMoedas" type="PanelContainer" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"Ficha"
+
+[node name="Linha" type="HBoxContainer" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaMoedas"]
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Icone" type="TextureRect" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaMoedas/Linha"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("25_moeda")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Texto" type="VBoxContainer" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaMoedas/Linha"]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="Legenda" type="Label" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaMoedas/Linha/Texto"]
+layout_mode = 2
+theme_type_variation = &"TextoClaro"
+theme_override_font_sizes/font_size = 16
+text = "Moedas"
+
+[node name="LabelMoedas" type="Label" parent="CanvasLayer/HUD/PainelScore/VBox/Fichas/FichaMoedas/Linha/Texto"]
+layout_mode = 2
+theme_type_variation = &"Numero"
+theme_override_font_sizes/font_size = 29
+text = "0"
+
+[node name="Recado" type="PanelContainer" parent="CanvasLayer/HUD/PainelScore/VBox"]
+layout_mode = 2
+theme_type_variation = &"Papel"
+
+[node name="LabelInstrucoes" type="Label" parent="CanvasLayer/HUD/PainelScore/VBox/Recado"]
+custom_minimum_size = Vector2(206, 0)
+layout_mode = 2
+theme_type_variation = &"TextoPapel"
 theme_override_font_sizes/font_size = 18
-text = "Score: 0"
-
-[node name="LabelMoedas" type="Label" parent="CanvasLayer/HUD/PainelScore/MarginContainer/VBoxContainer" unique_id=84267004]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.90, 0.65, 0.15, 1)
-theme_override_font_sizes/font_size = 15
-text = "Moedas: 0"
-
-[node name="LabelInstrucoes" type="Label" parent="CanvasLayer/HUD/PainelScore/MarginContainer/VBoxContainer" unique_id=527836545]
-layout_mode = 2
-theme_override_font_sizes/font_size = 12
-text = "WASD = Mover | Shift = Correr | E = Interagir"
+theme_override_constants/line_spacing = -2
+horizontal_alignment = 1
+autowrap_mode = 2
+text = ""
 
 [node name="InterfaceCalculo" parent="CanvasLayer" unique_id=1617993291 instance=ExtResource("3_ujm2o")]
+
+[node name="Loja" parent="CanvasLayer" unique_id=930000001 instance=ExtResource("21_loja")]
+
+[node name="MenuPausa" parent="CanvasLayer" unique_id=940000001 instance=ExtResource("22_pausa")]

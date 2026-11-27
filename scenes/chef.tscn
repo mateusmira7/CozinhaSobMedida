@@ -40,6 +40,7 @@ _data = {
 }
 
 [node name="Chef" type="CharacterBody2D" unique_id=1388323823]
+motion_mode = 1
 script = ExtResource("1_1slas")
 
 [node name="SomPasso" type="AudioStreamPlayer2D" parent="." unique_id=700000001]
@@ -112,10 +113,3 @@ libraries = {
 [node name="TimerPiscar" type="Timer" parent="." unique_id=111222361]
 wait_time = 2.6
 autostart = true
-
-[node name="LabelNome" type="Label" parent="." unique_id=1603388510]
-offset_left = -20.0
-offset_top = -58.0
-offset_right = 40.0
-offset_bottom = -42.0
-text = "👨‍🍳 Chef"

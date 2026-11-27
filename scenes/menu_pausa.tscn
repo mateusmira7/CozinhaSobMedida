@@ -1,0 +1,88 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/menu_pausa.gd" id="pausa"]
+[ext_resource type="Theme" path="res://assets/ui/tema_cozinha.tres" id="tema"]
+
+[node name="MenuPausa" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+process_mode = 3
+visible = false
+theme = ExtResource("tema")
+script = ExtResource("pausa")
+
+[node name="Sombra" type="ColorRect" parent="."]
+color = Color(0.05, 0.02, 0.01, 0.72)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Centro" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Lousa" type="PanelContainer" parent="Centro"]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+theme_type_variation = &"Lousa"
+
+[node name="Opcoes" type="VBoxContainer" parent="Centro/Lousa"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Titulo" type="Label" parent="Centro/Lousa/Opcoes"]
+layout_mode = 2
+text = "Jogo pausado"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 50
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.09, 0.02, 1)
+theme_override_constants/outline_size = 8
+
+[node name="Resumo" type="Label" parent="Centro/Lousa/Opcoes"]
+layout_mode = 2
+text = "Pontos: 0   |   Moedas: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.93, 0.96, 0.9, 1)
+
+[node name="BotaoContinuar" type="Button" parent="Centro/Lousa/Opcoes"]
+custom_minimum_size = Vector2(0, 62)
+layout_mode = 2
+theme_type_variation = &"BotaoPrincipal"
+text = "Continuar"
+
+[node name="BotaoSalvar" type="Button" parent="Centro/Lousa/Opcoes"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Salvar jogo"
+
+[node name="BotaoMenu" type="Button" parent="Centro/Lousa/Opcoes"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Salvar e voltar ao menu"
+
+[node name="BotaoSair" type="Button" parent="Centro/Lousa/Opcoes"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Salvar e sair do jogo"
+
+[node name="Aviso" type="Label" parent="Centro/Lousa/Opcoes"]
+layout_mode = 2
+text = "Esc para voltar ao jogo"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 23
+theme_override_colors/font_color = Color(0.75, 0.84, 0.76, 1)
+custom_minimum_size = Vector2(0, 24)
+autowrap_mode = 2

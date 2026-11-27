@@ -1,243 +1,358 @@
 [gd_scene format=3 uid="uid://d3menu001kitchen"]
 
-[ext_resource type="Script" path="res://scripts/menu.gd" id="1_menu"]
-[ext_resource type="AudioStream" path="res://assets/audio/music/musica_ambiente.wav" id="2_musica"]
-[ext_resource type="Texture2D" path="res://assets/art/parede.png" id="3_parede"]
-[ext_resource type="Texture2D" path="res://assets/art/piso_madeira.png" id="4_piso_madeira"]
-[ext_resource type="Texture2D" path="res://assets/art/rodape.png" id="5_rodape"]
-[ext_resource type="Texture2D" path="res://assets/art/janela.png" id="6_janela"]
-[ext_resource type="Texture2D" path="res://assets/art/quadro_azulejo1.png" id="7_quadro1"]
-[ext_resource type="Texture2D" path="res://assets/art/quadro_azulejo2.png" id="8_quadro2"]
-[ext_resource type="Texture2D" path="res://assets/art/panelas_penduradas.png" id="9_panelas"]
-[ext_resource type="Texture2D" path="res://assets/art/prateleira_temperos.png" id="10_temperos"]
-[ext_resource type="Texture2D" path="res://assets/art/vaso_planta.png" id="11_vaso"]
-[ext_resource type="Texture2D" path="res://assets/art/tapete.png" id="12_tapete"]
-[ext_resource type="Texture2D" path="res://assets/art/viga.png" id="13_viga"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="menu"]
+[ext_resource type="Theme" path="res://assets/ui/tema_cozinha.tres" id="tema"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/musica_ambiente.wav" id="musica"]
+[ext_resource type="Script" path="res://scripts/fita_metrica.gd" id="fita"]
+[ext_resource type="Script" path="res://scripts/correntes.gd" id="correntes"]
+[ext_resource type="Texture2D" path="res://assets/art/parede.png" id="parede"]
+[ext_resource type="Texture2D" path="res://assets/art/piso_madeira.png" id="piso_madeira"]
+[ext_resource type="Texture2D" path="res://assets/art/rodape.png" id="rodape"]
+[ext_resource type="Texture2D" path="res://assets/art/viga.png" id="viga"]
+[ext_resource type="Texture2D" path="res://assets/art/janela.png" id="janela"]
+[ext_resource type="Texture2D" path="res://assets/art/prateleira_temperos.png" id="prateleira_temperos"]
+[ext_resource type="Texture2D" path="res://assets/art/panelas_penduradas.png" id="panelas_penduradas"]
+[ext_resource type="Texture2D" path="res://assets/art/fogao.png" id="fogao"]
+[ext_resource type="Texture2D" path="res://assets/art/vaso_florido.png" id="vaso_florido"]
+[ext_resource type="Texture2D" path="res://assets/art/vaso_planta.png" id="vaso_planta"]
+[ext_resource type="Texture2D" path="res://assets/art/tapete.png" id="tapete"]
+[ext_resource type="Texture2D" path="res://assets/art/quadro_azulejo1.png" id="quadro_azulejo1"]
+[ext_resource type="Texture2D" path="res://assets/art/quadro_azulejo2.png" id="quadro_azulejo2"]
+[ext_resource type="Texture2D" path="res://assets/art/particula_vapor.png" id="particula_vapor"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBox_painel"]
-bg_color = Color(0.318, 0.203, 0.137, 0.97)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.76, 0.27, 0.06, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-shadow_color = Color(0.05, 0.02, 0.01, 0.45)
-shadow_size = 16
-shadow_offset = Vector2(0, 8)
+[sub_resource type="Gradient" id="grad_luz"]
+offsets = PackedFloat32Array(0, 0.45, 1)
+colors = PackedColorArray(0.16, 0.07, 0.02, 0.0, 0.16, 0.07, 0.02, 0.18, 0.12, 0.05, 0.02, 0.72)
 
-[sub_resource type="StyleBoxFlat" id="StyleBox_jogar_normal"]
-bg_color = Color(0.76, 0.27, 0.06, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.45, 0.14, 0.02, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.25)
-shadow_size = 4
-shadow_offset = Vector2(0, 3)
+[sub_resource type="GradientTexture2D" id="luz"]
+gradient = SubResource("grad_luz")
+width = 256
+height = 154
+fill = 1
+fill_from = Vector2(0.5, 0.45)
+fill_to = Vector2(1.08, 0.45)
 
-[sub_resource type="StyleBoxFlat" id="StyleBox_jogar_hover"]
-bg_color = Color(0.88, 0.38, 0.12, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.52, 0.17, 0.03, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-shadow_color = Color(0, 0, 0, 0.3)
-shadow_size = 5
-shadow_offset = Vector2(0, 3)
+[sub_resource type="ParticleProcessMaterial" id="vapor"]
+lifetime_randomness = 0.4
+emission_shape = 1
+emission_sphere_radius = 14.0
+direction = Vector3(0, -1, 0)
+spread = 18.0
+gravity = Vector3(0, -20, 0)
+initial_velocity_min = 14.0
+initial_velocity_max = 30.0
+scale_min = 1.4
+scale_max = 3.0
+color = Color(1, 1, 1, 0.4)
 
-[sub_resource type="StyleBoxFlat" id="StyleBox_jogar_pressed"]
-bg_color = Color(0.58, 0.19, 0.04, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.4, 0.13, 0.02, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBox_sair_normal"]
-bg_color = Color(0.4, 0.29, 0.21, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.26, 0.18, 0.13, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBox_sair_hover"]
-bg_color = Color(0.49, 0.36, 0.27, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.3, 0.21, 0.15, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBox_sair_pressed"]
-bg_color = Color(0.32, 0.23, 0.17, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
-border_color = Color(0.22, 0.15, 0.11, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBox_divider"]
-bg_color = Color(0.76, 0.27, 0.06, 0.55)
-corner_radius_top_left = 2
-corner_radius_top_right = 2
-corner_radius_bottom_right = 2
-corner_radius_bottom_left = 2
-
-[node name="Menu" type="Control" unique_id=5000000001]
+[node name="Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_menu")
+theme = ExtResource("tema")
+script = ExtResource("menu")
 
-[node name="MusicaMenu" type="AudioStreamPlayer" parent="." unique_id=5000000003]
-stream = ExtResource("2_musica")
+[node name="MusicaMenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("musica")
 volume_db = -14.0
 autoplay = true
 
-[node name="Cenario" type="Node2D" parent="." unique_id=6000000000]
-
-[node name="Parede" type="TextureRect" parent="Cenario" unique_id=6000000001]
-texture = ExtResource("3_parede")
-expand_mode = 1
-stretch_mode = 1
+[node name="Cenario" type="Control" parent="."]
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 0.0
 offset_right = 1200.0
-offset_bottom = 596.0
+offset_bottom = 720.0
 
-[node name="Viga" type="TextureRect" parent="Cenario" unique_id=6000000002]
-texture = ExtResource("13_viga")
+[node name="Parede" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1200.0
+offset_bottom = 576.0
+texture = ExtResource("parede")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="Chao" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 576.0
+offset_right = 1200.0
+offset_bottom = 720.0
+texture = ExtResource("piso_madeira")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Rodape" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 552.0
+offset_right = 1200.0
+offset_bottom = 600.0
+texture = ExtResource("rodape")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Viga" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 0.0
 offset_right = 1200.0
 offset_bottom = 32.0
-
-[node name="Rodape" type="TextureRect" parent="Cenario" unique_id=6000000003]
-texture = ExtResource("5_rodape")
+texture = ExtResource("viga")
 expand_mode = 1
 stretch_mode = 1
-offset_top = 596.0
-offset_right = 1200.0
-offset_bottom = 620.0
 
-[node name="Chao" type="TextureRect" parent="Cenario" unique_id=6000000004]
-texture = ExtResource("4_piso_madeira")
+[node name="Janela1" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 56.0
+offset_top = 66.0
+offset_right = 224.0
+offset_bottom = 186.0
+texture = ExtResource("janela")
 expand_mode = 1
-stretch_mode = 1
-offset_top = 620.0
-offset_right = 1200.0
-offset_bottom = 720.0
+stretch_mode = 0
 
-[node name="Janela1" type="TextureRect" parent="Cenario" unique_id=6000000005]
-texture = ExtResource("6_janela")
-offset_left = 55.0
-offset_top = 40.0
-offset_right = 167.0
-offset_bottom = 136.0
+[node name="Janela2" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 976.0
+offset_top = 66.0
+offset_right = 1144.0
+offset_bottom = 186.0
+texture = ExtResource("janela")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="Janela2" type="TextureRect" parent="Cenario" unique_id=6000000006]
-texture = ExtResource("6_janela")
-offset_left = 1033.0
-offset_top = 40.0
-offset_right = 1145.0
-offset_bottom = 136.0
+[node name="Quadro1" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 254.0
+offset_top = 92.0
+offset_right = 318.0
+offset_bottom = 156.0
+texture = ExtResource("quadro_azulejo1")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="QuadroAzulejo1" type="TextureRect" parent="Cenario" unique_id=6000000007]
-texture = ExtResource("7_quadro1")
-offset_left = 150.0
-offset_top = 150.0
-offset_right = 210.0
-offset_bottom = 210.0
+[node name="Quadro2" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 882.0
+offset_top = 92.0
+offset_right = 946.0
+offset_bottom = 156.0
+texture = ExtResource("quadro_azulejo2")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="QuadroAzulejo2" type="TextureRect" parent="Cenario" unique_id=6000000008]
-texture = ExtResource("8_quadro2")
-offset_left = 990.0
-offset_top = 150.0
-offset_right = 1050.0
-offset_bottom = 210.0
+[node name="Temperos" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 72.0
+offset_top = 212.0
+offset_right = 288.0
+offset_bottom = 356.0
+texture = ExtResource("prateleira_temperos")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="PanelasPenduradas" type="TextureRect" parent="Cenario" unique_id=6000000009]
-texture = ExtResource("9_panelas")
-offset_left = 80.0
-offset_top = 168.0
-offset_right = 200.0
-offset_bottom = 252.0
+[node name="Panelas" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 900.0
+offset_top = 216.0
+offset_right = 1140.0
+offset_bottom = 384.0
+texture = ExtResource("panelas_penduradas")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="PrateleiraTemperos" type="TextureRect" parent="Cenario" unique_id=6000000010]
-texture = ExtResource("10_temperos")
-offset_left = 1000.0
-offset_top = 260.0
+[node name="Tapete" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 72.0
+offset_top = 574.0
+offset_right = 360.0
+offset_bottom = 718.0
+texture = ExtResource("tapete")
+expand_mode = 1
+stretch_mode = 0
+
+[node name="Fogao" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 796.0
+offset_top = 432.0
 offset_right = 1108.0
-offset_bottom = 332.0
+offset_bottom = 624.0
+texture = ExtResource("fogao")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="Vaso1" type="TextureRect" parent="Cenario" unique_id=6000000011]
-texture = ExtResource("11_vaso")
-offset_left = 30.0
-offset_top = 492.0
-offset_right = 126.0
-offset_bottom = 620.0
+[node name="Vapor" type="GPUParticles2D" parent="Cenario"]
+position = Vector2(872, 448)
+amount = 14
+lifetime = 2.2
+preprocess = 2.0
+process_material = SubResource("vapor")
+texture = ExtResource("particula_vapor")
 
-[node name="Vaso2" type="TextureRect" parent="Cenario" unique_id=6000000012]
-texture = ExtResource("11_vaso")
-offset_left = 1074.0
-offset_top = 492.0
-offset_right = 1170.0
-offset_bottom = 620.0
+[node name="VasoEsquerdo" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = -12.0
+offset_top = 468.0
+offset_right = 108.0
+offset_bottom = 628.0
+texture = ExtResource("vaso_florido")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="Tapete" type="TextureRect" parent="Cenario" unique_id=6000000013]
-texture = ExtResource("12_tapete")
-offset_left = 456.0
-offset_top = 566.0
-offset_right = 744.0
-offset_bottom = 662.0
-modulate = Color(1, 1, 1, 0.95)
+[node name="VasoDireito" type="TextureRect" parent="Cenario"]
+mouse_filter = 2
+offset_left = 1092.0
+offset_top = 508.0
+offset_right = 1212.0
+offset_bottom = 668.0
+texture = ExtResource("vaso_planta")
+expand_mode = 1
+stretch_mode = 0
 
-[node name="FaixaTopo" type="ColorRect" parent="." unique_id=5000000004]
-layout_mode = 1
-offset_right = 1200.0
-offset_bottom = 6.0
-color = Color(0.76, 0.27, 0.06, 1)
+[node name="PosicaoChef" type="Marker2D" parent="Cenario"]
+position = Vector2(214, 546)
 
-[node name="FaixaBase" type="ColorRect" parent="." unique_id=6000000014]
-layout_mode = 1
-offset_top = 714.0
+[node name="Luz" type="TextureRect" parent="."]
+layout_mode = 0
+mouse_filter = 2
+offset_left = 0.0
+offset_top = 0.0
 offset_right = 1200.0
 offset_bottom = 720.0
-color = Color(0.76, 0.27, 0.06, 1)
+texture = SubResource("luz")
+expand_mode = 1
+texture_filter = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=5000000005]
+[node name="Correntes" type="Control" parent="."]
+layout_mode = 0
+mouse_filter = 2
+offset_left = 350.0
+offset_top = 30.0
+offset_right = 850.0
+offset_bottom = 74.0
+script = ExtResource("correntes")
+
+[node name="Placa" type="PanelContainer" parent="."]
+layout_mode = 0
+mouse_filter = 2
+offset_left = 320.0
+offset_top = 68.0
+offset_right = 880.0
+offset_bottom = 256.0
+theme_type_variation = &"Placa"
+
+[node name="Textos" type="VBoxContainer" parent="Placa"]
+layout_mode = 2
+theme_override_constants/separation = -8
+alignment = 1
+
+[node name="Titulo1" type="Label" parent="Placa/Textos"]
+layout_mode = 2
+text = "COZINHA"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 98
+theme_override_colors/font_color = Color(1, 0.93, 0.76, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.09, 0.02, 1)
+theme_override_constants/outline_size = 12
+
+[node name="Titulo2" type="Label" parent="Placa/Textos"]
+layout_mode = 2
+text = "SOB MEDIDA"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 58
+theme_override_colors/font_color = Color(1, 0.78, 0.24, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.09, 0.02, 1)
+theme_override_constants/outline_size = 10
+
+[node name="Respiro" type="Control" parent="Placa/Textos"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="Fita" type="Control" parent="Placa/Textos"]
+custom_minimum_size = Vector2(420, 16)
+layout_mode = 2
+size_flags_horizontal = 4
+script = ExtResource("fita")
+
+[node name="Centro" type="CenterContainer" parent="."]
+layout_mode = 0
+mouse_filter = 2
+offset_left = 360.0
+offset_top = 270.0
+offset_right = 840.0
+offset_bottom = 660.0
+
+[node name="Lousa" type="PanelContainer" parent="Centro"]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+theme_type_variation = &"Lousa"
+
+[node name="Opcoes" type="VBoxContainer" parent="Centro/Lousa"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Frase" type="Label" parent="Centro/Lousa/Opcoes"]
+layout_mode = 2
+text = "A matemática é o ingrediente secreto"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.93, 0.96, 0.9, 1)
+
+[node name="BotaoJogar" type="Button" parent="Centro/Lousa/Opcoes"]
+custom_minimum_size = Vector2(0, 68)
+layout_mode = 2
+theme_type_variation = &"BotaoPrincipal"
+text = "Jogar"
+
+[node name="ResumoSalvo" type="Label" parent="Centro/Lousa/Opcoes"]
+layout_mode = 2
+text = "Pontos: 0   |   Moedas: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+visible = false
+
+[node name="BotaoNovo" type="Button" parent="Centro/Lousa/Opcoes"]
+visible = false
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Novo jogo"
+
+[node name="BotaoSair" type="Button" parent="Centro/Lousa/Opcoes"]
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+text = "Sair"
+
+[node name="Creditos" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_top = -42.0
+offset_right = 250.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_type_variation = &"Etiqueta"
+
+[node name="Texto" type="Label" parent="Creditos"]
+layout_mode = 2
+text = "High Pitch Studios  -  Elisa Gomes, Otávio Roecker, Mateus Mira"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.96, 0.88, 0.74, 1)
+
+[node name="Confirmacao" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,81 +360,63 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Painel" type="PanelContainer" parent="CenterContainer" unique_id=5000000006]
-custom_minimum_size = Vector2(480, 400)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBox_painel")
+[node name="Sombra" type="ColorRect" parent="Confirmacao"]
+color = Color(0.05, 0.02, 0.01, 0.78)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Painel" unique_id=5000000007]
-layout_mode = 2
-theme_override_constants/margin_left = 34
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 34
-theme_override_constants/margin_bottom = 26
+[node name="Centro" type="CenterContainer" parent="Confirmacao"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBox" type="VBoxContainer" parent="CenterContainer/Painel/MarginContainer" unique_id=5000000008]
+[node name="Lousa" type="PanelContainer" parent="Confirmacao/Centro"]
+custom_minimum_size = Vector2(540, 0)
 layout_mode = 2
-theme_override_constants/separation = 14
-alignment = 1
+theme_type_variation = &"Lousa"
 
-[node name="LabelTitulo" type="Label" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=5000000009]
+[node name="Opcoes" type="VBoxContainer" parent="Confirmacao/Centro/Lousa"]
 layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="Pergunta" type="Label" parent="Confirmacao/Centro/Lousa/Opcoes"]
+layout_mode = 2
+text = "Começar um novo jogo?"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 30
-theme_override_colors/font_color = Color(1, 0.93, 0.8, 1)
-theme_override_colors/font_outline_color = Color(0.24, 0.11, 0.04, 1)
-theme_override_constants/outline_size = 5
-text = "🍳 COZINHA SOB MEDIDA 🍳"
+theme_override_font_sizes/font_size = 38
+theme_override_colors/font_color = Color(1, 0.86, 0.45, 1)
+theme_override_colors/font_outline_color = Color(0.2, 0.09, 0.02, 1)
+theme_override_constants/outline_size = 6
 
-[node name="LabelSub" type="Label" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=5000000010]
+[node name="Aviso" type="Label" parent="Confirmacao/Centro/Lousa/Opcoes"]
 layout_mode = 2
+text = "O progresso salvo será apagado."
 horizontal_alignment = 1
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.93, 0.96, 0.9, 1)
 autowrap_mode = 2
-theme_override_font_sizes/font_size = 13
-theme_override_colors/font_color = Color(0.93, 0.87, 0.78, 1)
-text = "Um simulador de restaurante onde a matemática é o ingrediente secreto."
 
-[node name="Divisor" type="PanelContainer" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=6000000015]
-custom_minimum_size = Vector2(0, 3)
+[node name="Botoes" type="HBoxContainer" parent="Confirmacao/Centro/Lousa/Opcoes"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBox_divider")
+theme_override_constants/separation = 24
 
-[node name="Spacer" type="Control" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=5000000011]
-custom_minimum_size = Vector2(0, 6)
+[node name="BotaoCancelar" type="Button" parent="Confirmacao/Centro/Lousa/Opcoes/Botoes"]
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
+size_flags_horizontal = 3
+text = "Voltar"
 
-[node name="BotaoJogar" type="Button" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=5000000012]
+[node name="BotaoApagar" type="Button" parent="Confirmacao/Centro/Lousa/Opcoes/Botoes"]
+custom_minimum_size = Vector2(0, 58)
 layout_mode = 2
-custom_minimum_size = Vector2(0, 54)
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(1, 0.96, 0.9, 1)
-theme_override_colors/font_hover_color = Color(1, 0.96, 0.9, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.96, 0.9, 1)
-theme_override_styles/normal = SubResource("StyleBox_jogar_normal")
-theme_override_styles/hover = SubResource("StyleBox_jogar_hover")
-theme_override_styles/pressed = SubResource("StyleBox_jogar_pressed")
-theme_override_styles/focus = SubResource("StyleBox_jogar_hover")
-text = "▶  Jogar (Vertical Slice)"
-
-[node name="Spacer2" type="Control" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=6000000016]
-custom_minimum_size = Vector2(0, 4)
-layout_mode = 2
-
-[node name="BotaoSair" type="Button" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=5000000015]
-layout_mode = 2
-custom_minimum_size = Vector2(0, 42)
-theme_override_font_sizes/font_size = 15
-theme_override_colors/font_color = Color(0.93, 0.88, 0.82, 1)
-theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBox_sair_normal")
-theme_override_styles/hover = SubResource("StyleBox_sair_hover")
-theme_override_styles/pressed = SubResource("StyleBox_sair_pressed")
-theme_override_styles/focus = SubResource("StyleBox_sair_hover")
-text = "Sair"
-
-[node name="LabelCreditos" type="Label" parent="CenterContainer/Painel/MarginContainer/VBox" unique_id=5000000016]
-layout_mode = 2
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 10
-theme_override_colors/font_color = Color(0.78, 0.7, 0.62, 1)
-text = "High Pitch Studios — Elisa Gomes, Otávio Roecker, Mateus Mira"
+size_flags_horizontal = 3
+theme_type_variation = &"BotaoPrincipal"
+theme_override_font_sizes/font_size = 29
+text = "Apagar e começar"
